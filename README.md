@@ -1,2 +1,2 @@
-# datenheim
-Bot for Datenheim
+# NBB
+Bot for Notebooksbilliger
