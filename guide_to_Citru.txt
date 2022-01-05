@@ -1,0 +1,23 @@
+I make some guide or suggestion for you again collected in a text file to make easier. I wll maintenece only this file in the repo if some points pops up. Acutally this is what I'm doing by hand...
+    
+    Drops so randomly at EU daytime, I will attach an excel sheet
+    
+1. API fetching with random free proxies. I managed to have 300ms iterations. 
+    URL_DE = 'https://api.store.nvidia.com/partner/v1/feinventory?skus=DE~NVGFT070~NVGFT080~NVGFT090~NVLKR30S~NSHRMT01~NVGFT060T~187&locale=DE'
+    URL_NL = 'https://api.store.nvidia.com/partner/v1/feinventory?skus=NL~NVGFT070~NVGFT080~NVGFT090~NVLKR30S~NSHRMT01~NVGFT060T~187&locale=NL'
+    two types of changes: link and availability
+    Have to pay attention sometimes the availability changes before the link has change
+
+2.  Continously runing variable numbers of accounts (I will register some with different names and addresses) on different proxies. 
+    Need to refresh these pages around 5 minutes to not drop out.
+3.  If there is an avaibility on API redirect all account to the link
+4.  Add to cart
+5. Here is a capthca which called friendlycaptcha https://github.com/FriendlyCaptcha, need to click on it and wait certain seconds (it may be vary) sometimes 25 sec sometimes 5sec... never know
+    Important information if you passed the captcha one time, there is no other chance to passed again in that IP address. Need to open new window with new IP to be able to do the captcha again.
+6. Check credit card tickbox
+7 click on accept terms and conditions
+8 Jetz Kaufen
+9. credit card information 
+10. Continue 
+
+The page redirect to 3DS, which is a payment security, what I need to approve on my phone.
