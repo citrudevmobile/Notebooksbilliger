@@ -1,0 +1,1 @@
+const storeUrl = `https://www.notebooksbilliger.de/`
