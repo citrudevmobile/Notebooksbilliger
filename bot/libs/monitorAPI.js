@@ -1,8 +1,9 @@
 //const axios = require('axios').default
 //const got = require('got')
-import got from 'got'
+
 
 export default function (cb) {
+    import got from 'got'
 
     let timer1 = null
     let timer2 = null
