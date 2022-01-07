@@ -1,5 +1,5 @@
 const storeUrl = `https://www.notebooksbilliger.de/`
-import { monitorAPI } from './libs/monitorAPI.js'
+import monitorAPI  from './libs/monitorAPI.js'
 import puppeteer from 'puppeteer'
 
 monitorAPI(async function(found) {
