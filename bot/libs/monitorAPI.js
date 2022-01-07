@@ -2,7 +2,7 @@
 //const got = require('got')
 
 
-export default function (cb) {
+module.exports = function (cb) {
     import got from 'got'
 
     let timer1 = null
