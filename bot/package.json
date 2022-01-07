@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Auto Cart Bot for datenheim",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm install && node index.js"
