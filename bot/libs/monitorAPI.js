@@ -8,6 +8,7 @@ module.exports = function (cb) {
     console.log('bot started...')
 
     timer1 = setInterval(function (callback) {
+        console.log('timer 1...')
         axios.get('https://api.store.nvidia.com/partner/v1/feinventory?skus=DE~NVGFT070~NVGFT080~NVGFT090~NVLKR30S~NSHRMT01~NVGFT060T~187&locale=DE').then(function (response) {
             
             console.log(response.data.listMap)
@@ -22,6 +23,7 @@ module.exports = function (cb) {
     }, 10000, cb)
 
     timer2 = setInterval(function (callback) {
+        console.log('timer 2...')
         axios.get('https://api.store.nvidia.com/partner/v1/feinventory?skus=NL~NVGFT070~NVGFT080~NVGFT090~NVLKR30S~NSHRMT01~NVGFT060T~187&locale=NL').then(function (response) {
            
             console.log(response.data.listMap)
