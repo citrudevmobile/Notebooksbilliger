@@ -8,7 +8,7 @@ monitorAPI(async function(found) {
 
     const browser = await puppeteer.launch({
         headless: false,
-        executablePath: 'c:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
+        executablePath: "C:\Program Files\Google\Chrome\Application\chrome.exe"
     })
 
     const page = await browser.newPage()
