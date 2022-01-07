@@ -20,7 +20,7 @@ module.exports = function (cb) {
             clearInterval(timer1)
         })
 
-    }, 10000, cb)
+    }, 1000, cb)
 
     timer2 = setInterval(function (callback) {
         console.log('timer 2...')
@@ -35,5 +35,5 @@ module.exports = function (cb) {
             clearInterval(timer2)
         })
 
-    }, 100000, cb)
+    }, 1000, cb)
 }
