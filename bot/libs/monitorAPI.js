@@ -1,5 +1,5 @@
-const axios = require('axios').default
-const fetch = require('node-fetch');
+//const axios = require('axios').default
+const fetch = require('node-fetch')
 
 module.exports = function (cb) {
 
