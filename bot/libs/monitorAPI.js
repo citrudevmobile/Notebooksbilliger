@@ -1,5 +1,5 @@
 //const axios = require('axios').default
-import got from 'got'
+import fetch from 'node-fetch'
 
 export default function (cb) {
 
@@ -18,10 +18,10 @@ export default function (cb) {
         try {
             //response = await axios.get('https://api.store.nvidia.com/partner/v1/feinventory?skus=DE~NVGFT070~NVGFT080~NVGFT090~NVLKR30S~NSHRMT01~NVGFT060T~187&locale=DE')
             //console.log(response.data.listMap)
-            //const response = await fetch('https://api.store.nvidia.com/partner/v1/feinventory?skus=DE~NVGFT070~NVGFT080~NVGFT090~NVLKR30S~NSHRMT01~NVGFT060T~187&locale=DE');
-            //const data = await response.json();
-            const response = await got('https://api.store.nvidia.com/partner/v1/feinventory?skus=DE~NVGFT070~NVGFT080~NVGFT090~NVLKR30S~NSHRMT01~NVGFT060T~187&locale=DE', { json: true });
-            console.log(response.body);
+            const response = await fetch('https://api.store.nvidia.com/partner/v1/feinventory?skus=DE~NVGFT070~NVGFT080~NVGFT090~NVLKR30S~NSHRMT01~NVGFT060T~187&locale=DE');
+            const data = await response.json();
+           
+            console.log(data);
 
             await callback(null)
         } catch (error) {
