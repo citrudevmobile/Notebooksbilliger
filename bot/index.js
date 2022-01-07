@@ -1,6 +1,6 @@
 const storeUrl = `https://www.notebooksbilliger.de/`
 const monitorAPI = require('./libs/monitorAPI')
-const puppeteer = require('puppeteer-core')
+const puppeteer = require('puppeteer')
 
 monitorAPI(async function(found) {
 
@@ -14,6 +14,5 @@ monitorAPI(async function(found) {
     const page = await browser.newPage()
     await page.goto(storeUrl)
     await page.waitForTimeout(500000)
-
     
 })
