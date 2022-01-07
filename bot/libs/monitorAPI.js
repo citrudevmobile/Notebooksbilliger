@@ -1,6 +1,4 @@
 import axios from 'axios'
-import HttpsProxyAgent from 'https-proxy-agent'
-import ProxyAgent from 'https-proxy-agent'
 
 export default function (cb) {
 
