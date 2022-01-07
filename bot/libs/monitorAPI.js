@@ -1,4 +1,4 @@
-const axios = require('axios')
+const axios = require('axios').default
 
 module.exports = function (cb) {
 
@@ -7,44 +7,23 @@ module.exports = function (cb) {
 
     console.log('bot started...')
 
-    axios.get('https://api.store.nvidia.com/partner/v1/feinventory?skus=DE~NVGFT070~NVGFT080~NVGFT090~NVLKR30S~NSHRMT01~NVGFT060T~187&locale=DE').then(function (response) {
-            
-        console.log(response.data.listMap)
-        cb(null)
-       
-    }).catch(function (error) {
 
-        console.log(error)
-        clearInterval(timer1)
-    })
+    timer1 = setInterval(async function (callback) {
 
-    timer1 = setInterval(function (callback) {
         console.log('timer 1...')
-        axios.get('https://api.store.nvidia.com/partner/v1/feinventory?skus=DE~NVGFT070~NVGFT080~NVGFT090~NVLKR30S~NSHRMT01~NVGFT060T~187&locale=DE').then(function (response) {
-            
-            console.log(response.data.listMap)
-            callback(null)
-           
-        }).catch(function (error) {
 
+        let response = null
+        
+        try {
+            response = await axios.get('https://api.store.nvidia.com/partner/v1/feinventory?skus=DE~NVGFT070~NVGFT080~NVGFT090~NVLKR30S~NSHRMT01~NVGFT060T~187&locale=DE')
+            console.log(response.data.listMap)
+            await callback(null)
+        } catch (error) {
             console.log(error)
             clearInterval(timer1)
-        })
+        }
 
-    }, 1000, cb)
+    }, 5000, cb)
 
-    timer2 = setInterval(function (callback) {
-        console.log('timer 2...')
-        axios.get('https://api.store.nvidia.com/partner/v1/feinventory?skus=NL~NVGFT070~NVGFT080~NVGFT090~NVLKR30S~NSHRMT01~NVGFT060T~187&locale=NL').then(function (response) {
-           
-            console.log(response.data.listMap)
-            callback(null)
-
-        }).catch(function (error) {
-
-            console.log(error)
-            clearInterval(timer2)
-        })
-
-    }, 1000, cb)
+   
 }
