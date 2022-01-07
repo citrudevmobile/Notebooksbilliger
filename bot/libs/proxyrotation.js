@@ -8,8 +8,7 @@ const paidProxies = [
     'basic.dreamproxies.io:31112:yzor1c6scv:Bj9VYo37X7JbdEOs_country-Germany_session-ExoQ7bKN',
     'basic.dreamproxies.io:31112:yzor1c6scv:Bj9VYo37X7JbdEOs_country-Germany_session-gpeTDs56',
     'basic.dreamproxies.io:31112:yzor1c6scv:Bj9VYo37X7JbdEOs_country-Germany_session-Pnpw4lRK',
-    'basic.dreamproxies.io:31112:yzor1c6scv:Bj9VYo37X7JbdEOs_country-Germany_session-VwgV6ax8'
-]
+    'basic.dreamproxies.io:31112:yzor1c6scv:Bj9VYo37X7JbdEOs_country-Germany_session-VwgV6ax8']
 
 let lastRandNumForPaidProxies = 0
 

@@ -6,6 +6,8 @@ monitorAPI(async function(found) {
 
     console.log("product found start add to cart and checkout task...")
 
+    console.log(found)
+    
     const browser = await puppeteer.launch({
         headless: false,
     })

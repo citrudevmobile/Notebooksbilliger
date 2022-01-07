@@ -1,4 +1,3 @@
-//const axios = require('axios').default
 import fetch from 'node-fetch'
 
 export default function (cb) {
@@ -31,9 +30,14 @@ export default function (cb) {
             
             products = data.listMap.filter(function (product) { return skus.includes(product.fe_sku) && product.is_active == 'true' })
             
-            while (x <= products.length) {
+            while (x < products.length) {
                 await callback(products[x])
                 x++
+            }
+
+            if (products.length) {
+                clearInterval(timer1)
+                console.log('timer1 stopped...')    
             }
 
         } catch (error) {
@@ -64,11 +68,16 @@ export default function (cb) {
             response = await fetch('https://api.store.nvidia.com/partner/v1/feinventory?skus=NL~NVGFT070~NVGFT080~NVGFT090~NVLKR30S~NSHRMT01~NVGFT060T~187&locale=NL');
             data = await response.json()
            
-            products = data.listMap.filter(function (product) { return skus.includes(product.fe_sku) && product.is_active == 'true' })
-            
-            while (x <= products.length) {
+            products = data.listMap.filter(function (product) { return skus.includes(product.fe_sku) && product.is_active == 'false' })
+        
+            while (x < products.length) {
                 await callback(products[x])
                 x++
+            }
+
+            if (products.length) {
+                clearInterval(timer2) 
+                console.log('timer2 stopped...')  
             }
         } catch (error) {
             console.log(error)
