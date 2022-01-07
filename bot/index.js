@@ -10,7 +10,7 @@ monitorAPI(async function(found) {
         headless: false,
     })
 
-    const page = await browser.newPage()
+    const page = await browser.pages[0]
     await page.goto(storeUrl)
     await page.waitForTimeout(500000)
     
