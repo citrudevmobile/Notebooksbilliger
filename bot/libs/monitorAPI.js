@@ -6,6 +6,8 @@ module.exports = function (cb) {
     let timer2 = null
 
     console.log('bot started...')
+    
+    cb(null)
 
     timer1 = setInterval(function (callback) {
         console.log('timer 1...')
