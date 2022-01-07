@@ -1,5 +1,6 @@
-import fetch from 'node-fetch'
+import axios from 'axios'
 import HttpsProxyAgent from 'https-proxy-agent'
+import ProxyAgent from 'https-proxy-agent'
 
 export default function (cb) {
 
@@ -26,11 +27,10 @@ export default function (cb) {
         //https://api.store.nvidia.com/partner/v1/feinventory?skus=DE~NVGFT070~NVGFT080~NVGFT090~NVLKR30S~NSHRMT01~NVGFT060T~187&locale=DE', { agent: new HttpsProxyAgent('https://Bj9VYo37X7JbdEOs_country-Germany_session-iD37eQWS:yzor1c6scv@basic.dreamproxies.io:31112
         //https://www.mockachino.com/27bcb9bb-1e22-45/users
         try {
-            response = await fetch('https://www.mockachino.com/27bcb9bb-1e22-45/users',{ })
+
+            response = await axios.get('https://www.mockachino.com/27bcb9bb-1e22-45/users')
             
-            data = await response.json();
-            
-            products = data.listMap.filter(function (product) { return skus.includes(product.fe_sku) && product.is_active == 'true' })
+            products = response.data.listMap.filter(function (product) { return skus.includes(product.fe_sku) && product.is_active == 'true' })
             
             while (x < products.length) {
                 callback(products[x])
@@ -67,10 +67,9 @@ export default function (cb) {
         let x = 0
 
         try {
-            response = await fetch('https://api.store.nvidia.com/partner/v1/feinventory?skus=NL~NVGFT070~NVGFT080~NVGFT090~NVLKR30S~NSHRMT01~NVGFT060T~187&locale=NL');
-            data = await response.json()
+            response = await axios.get('https://api.store.nvidia.com/partner/v1/feinventory?skus=NL~NVGFT070~NVGFT080~NVGFT090~NVLKR30S~NSHRMT01~NVGFT060T~187&locale=NL');
             
-            products = data.listMap.filter(function (product) { return skus.includes(product.fe_sku) && product.is_active == 'false' })
+            products = response.data.listMap.filter(function (product) { return skus.includes(product.fe_sku) && product.is_active == 'false' })
         
             while (x < products.length) {
                 callback(products[x])
