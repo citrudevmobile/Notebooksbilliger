@@ -28,7 +28,17 @@ export default function (cb) {
         //https://www.mockachino.com/27bcb9bb-1e22-45/users
         try {
 
-            response = await axios.get('https://www.mockachino.com/27bcb9bb-1e22-45/users')
+            response = await axios.get('https://www.mockachino.com/27bcb9bb-1e22-45/users', {
+                proxy: {
+                    protocol:'',
+                    host: '',
+                    port: '',
+                    auth: {
+                      username: '',
+                      password: ''
+                    }
+                  }
+            })
             
             products = response.data.listMap.filter(function (product) { return skus.includes(product.fe_sku) && product.is_active == 'true' })
             
