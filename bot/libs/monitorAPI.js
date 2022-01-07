@@ -1,5 +1,5 @@
 //const axios = require('axios').default
-const { default: got } = await import('got');
+const { default: got } = import('got');
 
 module.exports = function (cb) {
 
