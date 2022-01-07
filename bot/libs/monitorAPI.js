@@ -5,6 +5,8 @@ module.exports = function (cb) {
     let timer1 = null
     let timer2 = null
 
+    console.log('bot started...')
+
     timer1 = setInterval(function (callback) {
         axios.get('https://api.store.nvidia.com/partner/v1/feinventory?skus=DE~NVGFT070~NVGFT080~NVGFT090~NVLKR30S~NSHRMT01~NVGFT060T~187&locale=DE').then(function (response) {
             
