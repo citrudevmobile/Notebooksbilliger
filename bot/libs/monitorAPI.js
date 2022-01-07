@@ -1,4 +1,5 @@
 import fetch from 'node-fetch'
+import HttpsProxyAgent from 'https-proxy-agent'
 
 export default function (cb) {
 
@@ -24,10 +25,9 @@ export default function (cb) {
         let x = 0
 
         try {
-
-            response = await fetch('https://api.store.nvidia.com/partner/v1/feinventory?skus=DE~NVGFT070~NVGFT080~NVGFT090~NVLKR30S~NSHRMT01~NVGFT060T~187&locale=DE');
+            response = await fetch('https://api.store.nvidia.com/partner/v1/feinventory?skus=DE~NVGFT070~NVGFT080~NVGFT090~NVLKR30S~NSHRMT01~NVGFT060T~187&locale=DE',{agent: new HttpsProxyAgent('basic.dreamproxies.io:31112:yzor1c6scv:Bj9VYo37X7JbdEOs_country-Germany_session-iD37eQWS')});
             data = await response.json();
-            
+            console.log(data)
             products = data.listMap.filter(function (product) { return skus.includes(product.fe_sku) && product.is_active == 'true' })
             
             while (x < products.length) {
