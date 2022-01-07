@@ -16,22 +16,24 @@ export default function (cb) {
         let products = []
         let data = null
         let skus = [
-            "NVGFT070T_DE", 
-            "NVGFT080_DE",
-            "NVGFT070_DE",
-            "NVGFT060T_DE",
-            "NVGFT080T_DE"
+        "NVGFT070T_DE", 
+        "NVGFT080_DE",
+        "NVGFT070_DE",
+        "NVGFT060T_DE",
+        "NVGFT080T_DE"
         ]
         let x = 0
-
+        //https://api.store.nvidia.com/partner/v1/feinventory?skus=DE~NVGFT070~NVGFT080~NVGFT090~NVLKR30S~NSHRMT01~NVGFT060T~187&locale=DE', { agent: new HttpsProxyAgent('https://Bj9VYo37X7JbdEOs_country-Germany_session-iD37eQWS:yzor1c6scv@basic.dreamproxies.io:31112
+        //https://www.mockachino.com/27bcb9bb-1e22-45/users
         try {
-            response = await fetch('https://api.store.nvidia.com/partner/v1/feinventory?skus=DE~NVGFT070~NVGFT080~NVGFT090~NVLKR30S~NSHRMT01~NVGFT060T~187&locale=DE',{agent: new HttpsProxyAgent('basic.dreamproxies.io:31112:yzor1c6scv:Bj9VYo37X7JbdEOs_country-Germany_session-iD37eQWS')});
+            response = await fetch('https://www.mockachino.com/27bcb9bb-1e22-45/users',{ })
+            
             data = await response.json();
-            console.log(data)
+            
             products = data.listMap.filter(function (product) { return skus.includes(product.fe_sku) && product.is_active == 'true' })
             
             while (x < products.length) {
-                await callback(products[x])
+                callback(products[x])
                 x++
             }
 
@@ -56,22 +58,22 @@ export default function (cb) {
         let products = []
         let data = null
         let skus = [
-            "NVGFT070T_DE", 
-            "NVGFT080_DE",
-            "NVGFT070_DE",
-            "NVGFT060T_DE",
-            "NVGFT080T_DE"
+        "NVGFT070T_DE", 
+        "NVGFT080_DE",
+        "NVGFT070_DE",
+        "NVGFT060T_DE",
+        "NVGFT080T_DE"
         ]
         let x = 0
 
         try {
             response = await fetch('https://api.store.nvidia.com/partner/v1/feinventory?skus=NL~NVGFT070~NVGFT080~NVGFT090~NVLKR30S~NSHRMT01~NVGFT060T~187&locale=NL');
             data = await response.json()
-           
+            
             products = data.listMap.filter(function (product) { return skus.includes(product.fe_sku) && product.is_active == 'false' })
         
             while (x < products.length) {
-                await callback(products[x])
+                callback(products[x])
                 x++
             }
 
