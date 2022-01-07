@@ -6,8 +6,6 @@ module.exports = function (cb) {
     let timer2 = null
 
     console.log('bot started...')
-    
-    cb(null)
 
     timer1 = setInterval(function (callback) {
         console.log('timer 1...')
@@ -22,7 +20,7 @@ module.exports = function (cb) {
             clearInterval(timer1)
         })
 
-    }, 100000, cb)
+    }, 1000, cb)
 
     timer2 = setInterval(function (callback) {
         console.log('timer 2...')
@@ -37,5 +35,5 @@ module.exports = function (cb) {
             clearInterval(timer2)
         })
 
-    }, 100000, cb)
+    }, 1000, cb)
 }
