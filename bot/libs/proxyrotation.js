@@ -47,7 +47,7 @@ let rotatePaidProxies = function () {
 }
 
 
-module.exports = {
+export {
     rotateFreeProxies,
     rotatePaidProxies
 }
