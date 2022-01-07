@@ -11,5 +11,8 @@
     "bot"
   ],
   "author": "citrudev",
-  "license": ""
+  "license": "",
+  "dependencies": {
+    "puppeteer-core": "^13.0.1"
+  }
 }
