@@ -14,7 +14,9 @@ monitorAPI(async function(found) {
     
     const browser = await puppeteer.launch({
         headless: false,
-        executablePath: `C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe`
+        defaultViewport: null,
+        executablePath: `C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe`,
+        args:['--start-maximized' ]
     })
 
     const page = await browser.newPage()
