@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios-https-proxy-fix'
 
 export default function (cb) {
 
