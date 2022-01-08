@@ -28,12 +28,12 @@ export default function (cb) {
 
             response = await axios.get('https://www.mockachino.com/27bcb9bb-1e22-45/users', {
                 proxy: {
-                    protocol:'',
-                    host: '',
-                    port: '',
+                    protocol:'https',
+                    host: 'basic.dreamproxies.io',
+                    port: '31112',
                     auth: {
-                      username: '',
-                      password: ''
+                      username: 'yzor1c6scv',
+                      password: 'Bj9VYo37X7JbdEOs_country-Germany'
                     }
                   }
             })
