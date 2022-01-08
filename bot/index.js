@@ -19,7 +19,7 @@ monitorAPI(async function(found) {
         args:['--start-maximized' ]
     })
 
-    const page = await browser.pages()[0]
+    const page = (await browser.pages())[0]
     execTimer.start()
     await page.goto(storeUrl)
     execTimer.stop()
