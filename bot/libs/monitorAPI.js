@@ -28,7 +28,7 @@ export default function (cb) {
 
             response = await axios.get('https://www.mockachino.com/27bcb9bb-1e22-45/users', {
                 proxy: {
-                    protocol:'https',
+                    protocol:'http',
                     host: 'basic.dreamproxies.io',
                     port: '31112',
                     auth: {
