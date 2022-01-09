@@ -34,20 +34,32 @@ monitorAPI(async function(found) {
             console.log(error)
         }
     }
+
+    try {
+    
+        const page = (await browser.pages())[0]
+
+        await page.authenticate({
+            username: 'yzor1c6scv',
+            password: 'Bj9VYo37X7JbdEOs_country-Germany',
+        })
+
+        await page.setUserAgent(randUserAgent.getRandom())
+
+        execTimer.start()
+        
+        await page.goto(storeUrl, {waitUntil: 'networkidle0'})
+        await page.waitForSelector('#uc-btn-accept-banner')
+        await page.click('#uc-btn-accept-banner', { delay: 300 })
+
+        execTimer.stop()
+        await page.waitForTimeout(500000)
+
+    } catch (error) {
+
+        console.log(error)
+    }
    
-    const page = (await browser.pages())[0]
-
-    await page.authenticate({
-        username: 'yzor1c6scv',
-        password: 'Bj9VYo37X7JbdEOs_country-Germany',
-    })
-
-    await page.setUserAgent(randUserAgent.getRandom())
-
-    execTimer.start()
-    await page.goto(storeUrl, {waitUntil: 'networkidle0'})
-
-    execTimer.stop()
-    await page.waitForTimeout(500000)
+    
     
 })
