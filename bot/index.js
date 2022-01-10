@@ -1,65 +1,54 @@
-const storeUrl = `https://www.notebooksbilliger.de/`
+
 import monitorAPI  from './libs/monitorAPI.js'
-import puppeteer from 'puppeteer'
-import executionTime from 'execution-time'
-import randUserAgent from 'random-useragent'
+import Workers from './libs/workers.js'
 
-let execTimer = executionTime(console.log)
-//uc-btn-accept-banner
+let readyWorkers = []
 
-monitorAPI(async function(found) {
-   
-    console.log("product found start add to cart and checkout task...")
+Workers(async function(pubsub) {
 
-    console.log(found)
+    pubsub.subscribe('ready_worker', function (data) {
+        console.log(`Worker ${data.workerName} is ready`)
+        readyWorkers.push(data.workerName)
+    })
 
-    let browser = null
-    let proxyServer = 'http://basic.dreamproxies.io:31112'
-    
-    try {
-        browser = await puppeteer.launch({
-            headless: false,
-            defaultViewport: null,
-            executablePath: `C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe`,
-            args:['--start-maximized', `--proxy-server=${proxyServer}`],
-        })
-    } catch (error) {
+    pubsub.publish('start_worker', {
+        workerName: 'worker1',
+        userEmail: 'monyo.kapa88@gmail.com',
+        userPassword: 'QWERT12345',
+        proxyServer: 'http://basic.dreamproxies.io:31112',
+        proxyUser: 'yzor1c6scv',
+        proxyPassword: 'Bj9VYo37X7JbdEOs_country-Germany'
+    })
+
+    pubsub.publish('start_worker', {
+        workerName: 'worker2',
+        userEmail: 'nemeth.judit8806@gmail.com',
+        userPassword: 'QWERT12345',
+        proxyServer: 'http://basic.dreamproxies.io:31112',
+        proxyUser: 'yzor1c6scv',
+        proxyPassword: 'Bj9VYo37X7JbdEOs_country-Germany'
+    })
+
+    monitorAPI(async function(found) {
+        console.log(found)
         try {
-            browser = await puppeteer.launch({
-                headless: false,
-                defaultViewport: null,
-                args:['--start-maximized', `--proxy-server=${proxyServer}`],
-            })
+            let readyWorker = readyWorkers.shift()
+            if (readyWorker) {
+                pubsub.publish('update_product_list', {
+                    workerName: readyWorker,
+                    found: found
+                })
+                console.log("Product found: started add to cart and checkout task...")
+            } else {
+                console.log('Workers unavailabe to handle discovered product...')
+            }
         } catch (error) {
             console.log(error)
         }
-    }
-
-    try {
-    
-        const page = (await browser.pages())[0]
-
-        await page.authenticate({
-            username: 'yzor1c6scv',
-            password: 'Bj9VYo37X7JbdEOs_country-Germany',
-        })
-
-        await page.setUserAgent(randUserAgent.getRandom())
-
-        execTimer.start()
-        
-        await page.goto(storeUrl, {waitUntil: 'networkidle0'})
-        await page.waitForSelector('#uc-btn-accept-banner')
-        await page.click('#uc-btn-accept-banner', { delay: 300 })
-
-        execTimer.stop()
-        await page.waitForTimeout(500000)
-
-    } catch (error) {
-
-        console.log(error)
-    }
-   
-    
-    
+    })
 })
+
+
+
+
+
