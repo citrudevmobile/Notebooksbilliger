@@ -74,7 +74,7 @@ export default function (cb) {
                         await page.waitForSelector('#haccount',{ timeout: 100000 })
                         break;
                     } catch (error) {
-                        console.log(error)
+                        console.log(`Error change proxy....`)
                     }
                     x++
                 }
@@ -106,7 +106,6 @@ export default function (cb) {
                     } catch (error) {
 
                     }
-                    
                 })
         
             } catch (error) {
