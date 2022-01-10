@@ -85,23 +85,28 @@ export default function (cb) {
                     workerName: workerName
                 })
 
-                while(foundProducts[workerName] == null) {
-                    console.log('waiting for discovered product...')
-                    if (refresh > 100) {
+                let maintainSession = setInterval(async function (page) {
+                    try {
                         await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] })
                         await page.waitForSelector('#haccount',{ timeout: 100000 })
-                        refresh = 0 
-                    } else {
-                        await page.waitForSelector('#haccount',{ timeout: 100000 })
-                        await page.waitForTimeout(500)
-                        refresh++
+                    } catch (error) {
+                        console.log('session closed...')
                     }
-                }
+                }, 50000,page)
 
-                execTimer.start()
-                console.log('go to checkout now!.............')
-                execTimer.stop()
+                pubsub.subscribe(`${data.workerName}_checkout`, async function (data) {
+                    try {
+                        console.log("Product found: started add to cart and checkout task...")
+                        clearInterval(maintainSession)
+                        execTimer.start()
+                        await page.waitForSelector('#haccount',{ timeout: 100000 })
+                        console.log('go to checkout now!.............')
+                        execTimer.stop()
+                    } catch (error) {
 
+                    }
+                    
+                })
         
             } catch (error) {
         

@@ -37,11 +37,9 @@ Workers(async function(pubsub) {
         try {
             let readyWorker = readyWorkers.shift()
             if (readyWorker) {
-                pubsub.publish('update_product_list', {
-                    workerName: readyWorker,
+                pubsub.publish(`${readyWorker}_checkout`, {
                     found: found
                 })
-                console.log("Product found: started add to cart and checkout task...")
             } else {
                 console.log('Workers unavailabe to handle discovered product...')
             }
