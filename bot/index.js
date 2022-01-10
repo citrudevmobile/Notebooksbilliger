@@ -33,6 +33,7 @@ Workers(async function(pubsub) {
     })
 
     monitorAPI(pubsub, async function(found) {
+        console.log(found)
         try {
             let readyWorker = readyWorkers.shift()
             if (readyWorker) {
