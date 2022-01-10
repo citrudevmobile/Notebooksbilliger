@@ -8,10 +8,11 @@ Workers(async function(pubsub) {
 
     pubsub.subscribe('ready_worker', function (data) {
         console.log(`Worker ${data.workerName} is ready`)
-        readyWorkers.push(data.workerName)
         if(readyWorkers.length == 0) {
             pubsub.publish('monitor_api')
         }
+        readyWorkers.push(data.workerName)
+       
     })
 
     pubsub.publish('start_worker', {
