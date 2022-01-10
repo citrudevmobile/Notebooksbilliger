@@ -1,7 +1,7 @@
 
 import monitorAPI  from './libs/monitorAPI.js'
 import Workers from './libs/workers.js'
-import Tasks from './lib/tasks.js'
+import Tasks from './tasks.js'
 
 let readyWorkers = []
 
@@ -18,7 +18,7 @@ Workers(function(pubsub) {
 
         readyWorkers.push(data.workerName)
     })
-    
+
 
     for (const task of Tasks) {
         pubsub.publish('start_worker',task)
