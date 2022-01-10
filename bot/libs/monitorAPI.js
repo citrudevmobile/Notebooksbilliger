@@ -59,7 +59,7 @@ export default function (pubsub, cb) {
                 clearInterval(timer1)
             }
     
-        }, 50000, cb)
+        }, 100000, cb)
     
     
         timer2 = setInterval(async function (callback) {
@@ -97,7 +97,7 @@ export default function (pubsub, cb) {
                 clearInterval(timer2)
             }
     
-        }, 50000, cb)
+        }, 100000, cb)
 
 
     })
