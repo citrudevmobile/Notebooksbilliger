@@ -91,10 +91,12 @@ export default function (cb) {
                         await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] })
                         await page.waitForSelector('#haccount',{ timeout: 100000 })
                     } catch (error) {
-                        console.log('session closed...')
+                        console.log(`${workerName} session closed...`)
                     }
-                }, 50000,page)
+                }, 50000, page)
 
+
+                //handle add to cart and checkout...
                 pubsub.subscribe(`${data.workerName}_checkout`, async function (data) {
                     try {
                         console.log("Product found: started add to cart and checkout task...")
