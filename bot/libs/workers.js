@@ -19,9 +19,8 @@ export default function (cb) {
     pubsub.subscribe('start_worker', async (data) => {
         
         let workerName = data.workerName
-        foundProducts[workerName] = null
         let browser = null
-        let refresh = 0
+        
         console.log(`${workerName} started`)
         
         if (!workers.includes(workerName)){
