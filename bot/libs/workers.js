@@ -63,7 +63,7 @@ export default function (cb) {
                 while (x < retry) {
                     try {
                         await page.goto(storeUrl, {waitUntil: 'networkidle0', timeout: 100000})
-                        await page.waitForSelector('#uc-btn-accept-banner', { timeout: 100000 })
+                        await page.waitForSelector('#uc-btn-accept-banner')
                         await page.click('#uc-btn-accept-banner', { delay: 300 })
                         await page.goto(loginPage, {waitUntil: 'networkidle0', timeout: 100000})
                         await page.waitForSelector('#f_email_address', { timeout: 100000 })
@@ -86,7 +86,6 @@ export default function (cb) {
                 })
 
                 while(foundProducts[workerName] == null) {
-
                     console.log('waiting for discovered product...')
                     if (refresh > 100) {
                         await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] })
@@ -97,7 +96,6 @@ export default function (cb) {
                         await page.waitForTimeout(500)
                         refresh++
                     }
-
                 }
 
                 execTimer.start()
