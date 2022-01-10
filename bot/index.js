@@ -12,7 +12,6 @@ Workers(async function(pubsub) {
             pubsub.publish('monitor_api')
         }
         readyWorkers.push(data.workerName)
-       
     })
 
     pubsub.publish('start_worker', {
