@@ -9,7 +9,9 @@ Workers(async function(pubsub) {
     pubsub.subscribe('ready_worker', function (data) {
         console.log(`Worker ${data.workerName} is ready`)
         if(readyWorkers.length == 0) {
-            pubsub.publish('monitor_api')
+            setTimeout(function (pubsub) {
+                pubsub.publish('monitor_api')
+            }, 50000, pubsub)
         }
         readyWorkers.push(data.workerName)
     })
