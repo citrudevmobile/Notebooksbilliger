@@ -10,7 +10,6 @@ const storeUrl = `https://www.notebooksbilliger.de/`
 const loginPage = `https://www.notebooksbilliger.de/kundenkonto/anmelden/regis/register`
 
 let execTimer = executionTime(console.log)
-let foundProducts = {}
 let workers = []
 
 puppeteer.use(StealthPlugin())
@@ -23,7 +22,7 @@ export default function (cb) {
         foundProducts[workerName] = null
         let browser = null
         let refresh = 0
-        console.log(`Worker ${workerName} started`)
+        console.log(`${workerName} started`)
         
         if (!workers.includes(workerName)){
             workers.push(workerName)
@@ -107,7 +106,7 @@ export default function (cb) {
                         console.log('go to checkout now!.............')
                         execTimer.stop()
                     } catch (error) {
-
+                        console.log(`${data.workerName}: error occured during checkout process...`)
                     }
                 })
         
@@ -120,10 +119,6 @@ export default function (cb) {
       
     })
 
-    pubsub.subscribe('update_product_list', async (data) => {
-        console.log('updated product list...')
-        foundProducts[data.workerName] = data.found
-    })
 
     cb(pubsub)
 

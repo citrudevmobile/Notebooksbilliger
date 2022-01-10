@@ -1,40 +1,31 @@
 
 import monitorAPI  from './libs/monitorAPI.js'
 import Workers from './libs/workers.js'
+import Tasks from './lib/tasks.js'
 
 let readyWorkers = []
 
-Workers(async function(pubsub) {
+Workers(function(pubsub) {
 
     pubsub.subscribe('ready_worker', function (data) {
-        console.log(`Worker ${data.workerName} is ready`)
+        console.log(`${data.workerName} is ready`)
+
         if(readyWorkers.length == 0) {
             setTimeout(function (pubsub) {
                 pubsub.publish('monitor_api')
             }, 50000, pubsub)
         }
+
         readyWorkers.push(data.workerName)
     })
+    
 
-    pubsub.publish('start_worker', {
-        workerName: 'worker1',
-        userEmail: 'monyo.kapa88@gmail.com',
-        userPassword: 'QWERT12345',
-        proxyServer: 'deu.resi.dreamproxies.io:26371',
-        proxyUser: '6M1mec8j',
-        proxyPassword: 'Q2W2Y50dh7RJDfP6NaCg9u9n66tRdpykRLO74Ob23hBoZryeLYc6Q1qdlrXgPB2MY3xji-3VDrjf4P4Z'
-    })
+    for (const task of Tasks) {
+        pubsub.publish('start_worker',task)
+    }
 
-    pubsub.publish('start_worker', {
-        workerName: 'worker2',
-        userEmail: 'nemeth.judit8806@gmail.com',
-        userPassword: 'QWERT12345',
-        proxyServer: 'deu.resi.dreamproxies.io:26329',
-        proxyUser: '6M1mec8j',
-        proxyPassword: 'Q2W2Y50dh7RJDfP6NaCg9u9n66tRdpykRLO74Ob23hBoZryeLYc6Q1qdlrXgPB2MY3xji-4HlCrWPSq4'
-    })
-
-    monitorAPI(pubsub, async function(found) {
+    
+    monitorAPI(pubsub, function(found) {
         console.log(found)
         try {
             let readyWorker = readyWorkers.shift()
