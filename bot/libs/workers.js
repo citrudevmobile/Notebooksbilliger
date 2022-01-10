@@ -92,6 +92,7 @@ export default function (cb) {
                         await page.waitForSelector('#haccount',{ timeout: 100000 })
                     } catch (error) {
                         console.log(`${workerName} session closed...`)
+                        clearInterval(maintainSession)
                     }
                 }, 50000, page)
 
