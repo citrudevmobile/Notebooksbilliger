@@ -57,9 +57,7 @@ export default function (cb) {
                 })
         
                 await page.setUserAgent(randUserAgent.toString())
-        
-                execTimer.start()
-                
+     
                 await page.goto(storeUrl, {waitUntil: 'networkidle0', timeout: 100000})
                 await page.waitForSelector('#uc-btn-accept-banner', { timeout: 100000 })
                 await page.click('#uc-btn-accept-banner', { delay: 300 })
@@ -70,14 +68,15 @@ export default function (cb) {
                 await page.type('#f_password', data.userPassword, {delay: 300})
                 await page.click(`button[value="Weiter"]`, {delay: 300})
                 await page.waitForSelector('#haccount',{ timeout: 100000 })
-                execTimer.stop()
-                console.log('okay loggedin')
+                
+                console.log('okay logged in')
     
                 await pubsub.publish('ready_worker', {
                     workerName: workerName
                 })
 
                 while(foundProducts[workerName] == null) {
+
                     console.log('waiting for discovered product...')
                     if (refresh > 100) {
                         await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] })
@@ -88,7 +87,12 @@ export default function (cb) {
                         await page.waitForTimeout(500)
                         refresh++
                     }
+                    
                 }
+
+                execTimer.start()
+
+                execTimer.stop()
 
         
             } catch (error) {
@@ -102,8 +106,7 @@ export default function (cb) {
 
     pubsub.subscribe('update_product_list', async (data) => {
         console.log('updated product list...')
-        let workerName = data.workerName
-        foundProducts[workerName] = data.found
+        foundProducts[data.workerName] = data.found
     })
 
     cb(pubsub)
