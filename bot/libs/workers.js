@@ -101,7 +101,7 @@ export default function (cb) {
     })
 
     pubsub.subscribe('update_product_list', async (data) => {
-        console.log('updated product list')
+        console.log('updated product list...')
         let workerName = data.workerName
         foundProducts[workerName] = data.found
     })

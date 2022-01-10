@@ -15,18 +15,18 @@ Workers(async function(pubsub) {
         workerName: 'worker1',
         userEmail: 'monyo.kapa88@gmail.com',
         userPassword: 'QWERT12345',
-        proxyServer: 'http://basic.dreamproxies.io:31112',
-        proxyUser: 'yzor1c6scv',
-        proxyPassword: 'Bj9VYo37X7JbdEOs_country-Germany'
+        proxyServer: 'http://deu.resi.dreamproxies.io:26448',
+        proxyUser: '6M1mec8j',
+        proxyPassword: 'Q2W2Y50dh7RJDfP6NaCg9u9n66tRdpykRLO74Ob23hBoZryeLYc6Q1qdlrXgPB2MY3xji-SxcRodi5Zn'
     })
 
     pubsub.publish('start_worker', {
         workerName: 'worker2',
         userEmail: 'nemeth.judit8806@gmail.com',
         userPassword: 'QWERT12345',
-        proxyServer: 'http://basic.dreamproxies.io:31112',
-        proxyUser: 'yzor1c6scv',
-        proxyPassword: 'Bj9VYo37X7JbdEOs_country-Germany'
+        proxyServer: 'http://deu.resi.dreamproxies.io:26399',
+        proxyUser: '6M1mec8j',
+        proxyPassword: 'Q2W2Y50dh7RJDfP6NaCg9u9n66tRdpykRLO74Ob23hBoZryeLYc6Q1qdlrXgPB2MY3xji-4Xro27ssy6'
     })
 
     monitorAPI(async function(found) {
