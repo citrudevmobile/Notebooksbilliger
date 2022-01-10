@@ -57,17 +57,27 @@ export default function (cb) {
                 })
         
                 await page.setUserAgent(randUserAgent.toString())
-     
-                await page.goto(storeUrl, {waitUntil: 'networkidle0', timeout: 100000})
-                await page.waitForSelector('#uc-btn-accept-banner', { timeout: 100000 })
-                await page.click('#uc-btn-accept-banner', { delay: 300 })
-                await page.goto(loginPage, {waitUntil: 'networkidle0', timeout: 100000})
-                await page.waitForSelector('#f_email_address', { timeout: 100000 })
-                await page.waitForSelector('#f_password', { timeout: 100000 })
-                await page.type('#f_email_address', data.userEmail, {delay: 300})
-                await page.type('#f_password', data.userPassword, {delay: 300})
-                await page.click(`button[value="Weiter"]`, {delay: 300})
-                await page.waitForSelector('#haccount',{ timeout: 100000 })
+
+                let retry = 5
+                let x = 0
+                while (x < retry) {
+                    try {
+                        await page.goto(storeUrl, {waitUntil: 'networkidle0', timeout: 100000})
+                        await page.waitForSelector('#uc-btn-accept-banner', { timeout: 100000 })
+                        await page.click('#uc-btn-accept-banner', { delay: 300 })
+                        await page.goto(loginPage, {waitUntil: 'networkidle0', timeout: 100000})
+                        await page.waitForSelector('#f_email_address', { timeout: 100000 })
+                        await page.waitForSelector('#f_password', { timeout: 100000 })
+                        await page.type('#f_email_address', data.userEmail, {delay: 300})
+                        await page.type('#f_password', data.userPassword, {delay: 300})
+                        await page.click(`button[value="Weiter"]`, {delay: 300})
+                        await page.waitForSelector('#haccount',{ timeout: 100000 })
+                        break;
+                    } catch (error) {
+                        console.log(error)
+                    }
+                    x++
+                }
                 
                 console.log('okay logged in')
     
@@ -87,7 +97,7 @@ export default function (cb) {
                         await page.waitForTimeout(500)
                         refresh++
                     }
-                    
+
                 }
 
                 execTimer.start()
