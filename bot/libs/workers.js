@@ -20,7 +20,7 @@ export default function (cb) {
         
         let workerName = data.workerName
         let browser = null
-        
+
         console.log(`${workerName} started`)
         
         if (!workers.includes(workerName)){
@@ -77,7 +77,6 @@ export default function (cb) {
                     x++
                 }
                 
-                console.log('okay logged in')
     
                 await pubsub.publish('ready_worker', {
                     workerName: workerName
