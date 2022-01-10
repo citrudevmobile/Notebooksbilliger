@@ -99,7 +99,7 @@ export default function (cb) {
                 }
 
                 execTimer.start()
-
+                console.log('go to checkout now!.............')
                 execTimer.stop()
 
         
