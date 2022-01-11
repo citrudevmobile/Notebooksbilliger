@@ -75,7 +75,6 @@ export default function (cb) {
 
                         break;
                     } catch (error) {
-                        console.log(`Error change proxy for ${workerName}....`)
                     }
                     x++
                 }
