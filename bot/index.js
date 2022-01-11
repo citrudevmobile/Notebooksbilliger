@@ -37,6 +37,7 @@ Workers(function(pubsub) {
                 })
             } else {
                 console.log('Workers unavailabe to handle discovered product...')
+                discordMessage(`#Product Found`, `Found the product [ ${found.product_url} ] your searching for. However, workers are unavailabe to handle discovered product.`, false).send()
             }
         } catch (error) {
             console.log(error)
