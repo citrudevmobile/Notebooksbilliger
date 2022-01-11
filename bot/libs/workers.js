@@ -106,10 +106,11 @@ export default function (cb) {
                             clearInterval(maintainSession)
                             execTimer.start()
                             await page.waitForSelector('#haccount',{ timeout: 100000 })
-                            console.log('go to checkout now!.............')
+                            await page.goto('https://www.notebooksbilliger.de/apple+magsafe+charger+mhxh3zma+686049', {waitUntil: 'networkidle0', timeout: 50000})
                             execTimer.stop()
                         } catch (error) {
                             console.log(`${data.workerName}: error occured during checkout process...`)
+                            discordMessage(`#${data.workerName} failed to checkout product.`, `contact admin for your bot to findout more`, false).send()
                         }
                     })
 
