@@ -87,7 +87,7 @@ export default function (cb) {
     
                     maintainSession = setInterval(async function (page) {
                         try {
-                            console.log('maintaining session...')
+                            console.log(`${workerName} is maintaining session...`)
                             await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] })
                             await page.waitForSelector('#haccount',{ timeout: 100000 })
                         } catch (error) {
