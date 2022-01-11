@@ -108,7 +108,7 @@ export default function (cb) {
                             execTimer.start()
                             while (true) {
                                 try {
-                                    await page.goto('https://www.notebooksbilliger.de/apple+magsafe+charger+mhxh3zma+686049', { waitUntil: 'networkidle0', timeout: 50000 })
+                                    await page.goto('https://www.notebooksbilliger.de/tablets/samsung+galaxy+tab+s7+sm+t875n+lte+mystic+black+741733', { waitUntil: 'networkidle0', timeout: 50000 })
                                     await page.waitForSelector('.nbb-btn.btn_full.js-pdp-head-add-to-cart',{ timeout: 100000 })
                                     console.log('found add to cart button...')
                                     await page.click('.nbb-btn.btn_full.js-pdp-head-add-to-cart', {delay: 300, clickCount: 5})
