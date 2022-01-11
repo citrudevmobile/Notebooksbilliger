@@ -128,10 +128,7 @@ export default function (cb) {
 
                     console.log(`${data.workerName} failed to login. Please check proxy`)
                     //discordMessage(`#${data.workerName} failed to login.`, `Please check proxy or restart bot. ${data.workerName}  may have been blocked`, false).send()
-
                 }
-
-               
         
             } catch (error) {
         

@@ -29,8 +29,8 @@ Workers(function(pubsub) {
     monitorAPI(pubsub, function(found) {
         console.log(found)
         try {
-            while(readyWorkers.length > 0) {
-                let readyWorker = readyWorkers.shift()
+            for(const readyWorker of readyWorkers) {
+               
                 if (readyWorker) {
                     //discordMessage(`#Product Found`, `Found the product [ ${found.product_url} ] your searching for. Bot has assigned [${readyWorker}] to checkout product.`, true).send()
                     pubsub.publish(`${readyWorker}_checkout`, {
