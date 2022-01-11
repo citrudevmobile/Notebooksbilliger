@@ -96,6 +96,7 @@ export default function (cb) {
 
                 //handle add to cart and checkout...
                 pubsub.subscribe(`${data.workerName}_checkout`, async function (data) {
+                    //https://www.notebooksbilliger.de/apple+magsafe+charger+mhxh3zma+686049
                     try {
                         console.log("Product found: started add to cart and checkout task...")
                         clearInterval(maintainSession)

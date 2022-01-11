@@ -4,11 +4,14 @@ export default function (pubsub, cb) {
 
     let timer1 = null
     let timer2 = null
+    let time = 100000
 
     console.log('bot started...')
 
     pubsub.subscribe('monitor_api', async (data) => { 
+
         console.log('monitor api started...')
+        
         timer1 = setInterval(async function (callback) {
 
             console.log('timer 1...')
@@ -59,7 +62,7 @@ export default function (pubsub, cb) {
                 clearInterval(timer1)
             }
     
-        }, 100000, cb)
+        }, time, cb)
     
     
         timer2 = setInterval(async function (callback) {
@@ -97,7 +100,7 @@ export default function (pubsub, cb) {
                 clearInterval(timer2)
             }
     
-        }, 100000, cb)
+        }, time, cb)
 
 
     })
