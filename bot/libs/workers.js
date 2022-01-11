@@ -79,7 +79,8 @@ export default function (cb) {
                     x++
                 }
                 
-                if (await page.$('#haccount')) {
+               
+                if ((await page.$('#haccount'))) {
 
                     await pubsub.publish('ready_worker', {
                         workerName: workerName
@@ -108,7 +109,7 @@ export default function (cb) {
                             while (true) {
                                 try {
                                     await page.goto('https://www.notebooksbilliger.de/apple+magsafe+charger+mhxh3zma+686049', { waitUntil: 'networkidle0', timeout: 50000 })
-                                    
+
                                     break
                                 } catch (error) {
     
