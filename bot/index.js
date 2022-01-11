@@ -43,7 +43,7 @@ Workers(function(pubsub) {
             } 
         } catch (error) {
             console.log(error)
-        }    if (readyWorker) {
+        } if (readyWorker) {
             //discordMessage(`#Product Found`, `Found the product [ ${found.product_url} ] your searching for. Bot has assigned [${readyWorker}] to checkout product.`, true).send()
             pubsub.publish(`${readyWorker}_checkout`, {
                 found: found
