@@ -10,7 +10,7 @@ Workers(function(pubsub) {
 
     pubsub.subscribe('ready_worker', function (data) {
         console.log(`${data.workerName} is ready`)
-        discordMessage(`#Bot Worker Ready`, `[ ${data.workerName} ] is ready and waiting for discovered product.`, true).send()
+        //discordMessage(`#Bot Worker Ready`, `[ ${data.workerName} ] is ready and waiting for discovered product.`, true).send()
         if(readyWorkers.length == 0) {
             setTimeout(function (pubsub) {
                 pubsub.publish('monitor_api')
@@ -32,25 +32,25 @@ Workers(function(pubsub) {
             while(readyWorkers.length > 0) {
                 let readyWorker = readyWorkers.shift()
                 if (readyWorker) {
-                    discordMessage(`#Product Found`, `Found the product [ ${found.product_url} ] your searching for. Bot has assigned [${readyWorker}] to checkout product.`, true).send()
+                    //discordMessage(`#Product Found`, `Found the product [ ${found.product_url} ] your searching for. Bot has assigned [${readyWorker}] to checkout product.`, true).send()
                     pubsub.publish(`${readyWorker}_checkout`, {
                         found: found
                     })
                 } else {
                     console.log('Workers unavailabe to handle discovered product...')
-                    discordMessage(`#Product Found`, `Found the product [ ${found.product_url} ] your searching for. However, workers are unavailabe to handle discovered product.`, false).send()
+                    //discordMessage(`#Product Found`, `Found the product [ ${found.product_url} ] your searching for. However, workers are unavailabe to handle discovered product.`, false).send()
                 }
             } 
         } catch (error) {
             console.log(error)
         }    if (readyWorker) {
-            discordMessage(`#Product Found`, `Found the product [ ${found.product_url} ] your searching for. Bot has assigned [${readyWorker}] to checkout product.`, true).send()
+            //discordMessage(`#Product Found`, `Found the product [ ${found.product_url} ] your searching for. Bot has assigned [${readyWorker}] to checkout product.`, true).send()
             pubsub.publish(`${readyWorker}_checkout`, {
                 found: found
             })
         } else {
             console.log('Workers unavailabe to handle discovered product...')
-            discordMessage(`#Product Found`, `Found the product [ ${found.product_url} ] your searching for. However, workers are unavailabe to handle discovered product.`, false).send()
+            //discordMessage(`#Product Found`, `Found the product [ ${found.product_url} ] your searching for. However, workers are unavailabe to handle discovered product.`, false).send()
         }
     })
 })

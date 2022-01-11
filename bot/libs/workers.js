@@ -119,14 +119,14 @@ export default function (cb) {
                             execTimer.stop()
                         } catch (error) {
                             console.log(`${data.workerName}: error occured during checkout process...`)
-                            discordMessage(`#${data.workerName} failed to checkout product.`, `contact admin for your bot to findout more`, false).send()
+                            //discordMessage(`#${data.workerName} failed to checkout product.`, `contact admin for your bot to findout more`, false).send()
                         }
                     })
 
                 } else {
 
                     console.log(`${data.workerName} failed to login. Please check proxy`)
-                    discordMessage(`#${data.workerName} failed to login.`, `Please check proxy or restart bot. ${data.workerName}  may have been blocked`, false).send()
+                    //discordMessage(`#${data.workerName} failed to login.`, `Please check proxy or restart bot. ${data.workerName}  may have been blocked`, false).send()
 
                 }
 
