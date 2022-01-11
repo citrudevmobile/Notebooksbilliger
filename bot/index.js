@@ -10,7 +10,7 @@ Workers(function(pubsub) {
 
     pubsub.subscribe('ready_worker', function (data) {
         console.log(`${data.workerName} is ready`)
-
+        discordMessage(`Bot Worker Ready`, `${data.workerName} is ready and waiting for discovered product.`).send()
         if(readyWorkers.length == 0) {
             setTimeout(function (pubsub) {
                 pubsub.publish('monitor_api')
