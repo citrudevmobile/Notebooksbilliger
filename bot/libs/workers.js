@@ -27,13 +27,13 @@ export default function (cb) {
         
         if (!workers.includes(workerName)){
             workers.push(workerName)
-
+            //`--blink-settings=imagesEnabled=false`
             try {
                 browser = await puppeteer.launch({
                     headless: false,
                     defaultViewport: null,
                     executablePath: `C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe`,
-                    args:['--start-maximized', `--proxy-server=${data.proxyServer}`, `--blink-settings=imagesEnabled=false`],
+                    args:['--start-maximized', `--proxy-server=${data.proxyServer}`, ],
                 })
             } catch (error) {
                 try {
