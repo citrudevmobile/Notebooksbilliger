@@ -29,18 +29,28 @@ Workers(function(pubsub) {
     monitorAPI(pubsub, function(found) {
         console.log(found)
         try {
-            let readyWorker = readyWorkers.shift()
-            if (readyWorker) {
-                discordMessage(`#Product Found`, `Found the product [ ${found.product_url} ] your searching for. Bot has assigned [${readyWorker}] to checkout product.`, true).send()
-                pubsub.publish(`${readyWorker}_checkout`, {
-                    found: found
-                })
-            } else {
-                console.log('Workers unavailabe to handle discovered product...')
-                discordMessage(`#Product Found`, `Found the product [ ${found.product_url} ] your searching for. However, workers are unavailabe to handle discovered product.`, false).send()
-            }
+            while(readyWorkers.length > 0) {
+                let readyWorker = readyWorkers.shift()
+                if (readyWorker) {
+                    discordMessage(`#Product Found`, `Found the product [ ${found.product_url} ] your searching for. Bot has assigned [${readyWorker}] to checkout product.`, true).send()
+                    pubsub.publish(`${readyWorker}_checkout`, {
+                        found: found
+                    })
+                } else {
+                    console.log('Workers unavailabe to handle discovered product...')
+                    discordMessage(`#Product Found`, `Found the product [ ${found.product_url} ] your searching for. However, workers are unavailabe to handle discovered product.`, false).send()
+                }
+            } 
         } catch (error) {
             console.log(error)
+        }    if (readyWorker) {
+            discordMessage(`#Product Found`, `Found the product [ ${found.product_url} ] your searching for. Bot has assigned [${readyWorker}] to checkout product.`, true).send()
+            pubsub.publish(`${readyWorker}_checkout`, {
+                found: found
+            })
+        } else {
+            console.log('Workers unavailabe to handle discovered product...')
+            discordMessage(`#Product Found`, `Found the product [ ${found.product_url} ] your searching for. However, workers are unavailabe to handle discovered product.`, false).send()
         }
     })
 })
