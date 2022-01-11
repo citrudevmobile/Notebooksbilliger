@@ -20,6 +20,7 @@ export default function (cb) {
         
         let workerName = data.workerName
         let browser = null
+        let maintainSession = null
 
         console.log(`${workerName} started`)
         
@@ -70,6 +71,7 @@ export default function (cb) {
                         await page.type('#f_password', data.userPassword, {delay: 300})
                         await page.click(`button[value="Weiter"]`, {delay: 300})
                         await page.waitForSelector('#haccount',{ timeout: 100000 })
+
                         break;
                     } catch (error) {
                         console.log(`Error change proxy for ${workerName}....`)
@@ -77,24 +79,25 @@ export default function (cb) {
                     x++
                 }
                 
+                if (await page.$('#haccount')) {
+
+                    await pubsub.publish('ready_worker', {
+                        workerName: workerName
+                    })
     
-                await pubsub.publish('ready_worker', {
-                    workerName: workerName
-                })
-
-                let maintainSession = setInterval(async function (page) {
-                    try {
-                        console.log('maintaining session...')
-                        await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] })
-                        await page.waitForSelector('#haccount',{ timeout: 100000 })
-                    } catch (error) {
-                        console.log(`${workerName} session closed...`)
-                        clearInterval(maintainSession)
-                    }
-                }, 50000, page)
+                    maintainSession = setInterval(async function (page) {
+                        try {
+                            console.log('maintaining session...')
+                            await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] })
+                            await page.waitForSelector('#haccount',{ timeout: 100000 })
+                        } catch (error) {
+                            console.log(`${workerName} session closed...`)
+                            clearInterval(maintainSession)
+                        }
+                    }, 50000, page)
 
 
-                //handle add to cart and checkout...
+                     //handle add to cart and checkout...
                 pubsub.subscribe(`${data.workerName}_checkout`, async function (data) {
                     //https://www.notebooksbilliger.de/apple+magsafe+charger+mhxh3zma+686049
                     try {
@@ -108,6 +111,10 @@ export default function (cb) {
                         console.log(`${data.workerName}: error occured during checkout process...`)
                     }
                 })
+
+            }
+
+               
         
             } catch (error) {
         
