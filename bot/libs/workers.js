@@ -3,6 +3,7 @@ import puppeteer from 'puppeteer-extra'
 import executionTime from 'execution-time'
 import UserAgent from 'user-agents'
 import StealthPlugin from 'puppeteer-extra-plugin-stealth'
+import discordMessage from './discordMessage.js'
 
 const randUserAgent = new UserAgent({ deviceCategory: 'desktop' })
 const pubsub = new PubSub();
@@ -113,7 +114,10 @@ export default function (cb) {
                     })
 
                 } else {
-                    
+
+                    console.log(`${data.workerName} failed to login. Please check proxy`)
+                    discordMessage(`${data.workerName} failed to login.`, `Please check proxy or restart bot. Bot may have been blocked`, false)
+
                 }
 
                
