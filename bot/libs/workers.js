@@ -97,20 +97,20 @@ export default function (cb) {
                     }, 50000, page)
 
 
-                     //handle add to cart and checkout...
-                pubsub.subscribe(`${data.workerName}_checkout`, async function (data) {
-                    //https://www.notebooksbilliger.de/apple+magsafe+charger+mhxh3zma+686049
-                    try {
-                        console.log("Product found: started add to cart and checkout task...")
-                        clearInterval(maintainSession)
-                        execTimer.start()
-                        await page.waitForSelector('#haccount',{ timeout: 100000 })
-                        console.log('go to checkout now!.............')
-                        execTimer.stop()
-                    } catch (error) {
-                        console.log(`${data.workerName}: error occured during checkout process...`)
-                    }
-                })
+                        //handle add to cart and checkout...
+                    pubsub.subscribe(`${data.workerName}_checkout`, async function (data) {
+                        //https://www.notebooksbilliger.de/apple+magsafe+charger+mhxh3zma+686049
+                        try {
+                            console.log("Product found: started add to cart and checkout task...")
+                            clearInterval(maintainSession)
+                            execTimer.start()
+                            await page.waitForSelector('#haccount',{ timeout: 100000 })
+                            console.log('go to checkout now!.............')
+                            execTimer.stop()
+                        } catch (error) {
+                            console.log(`${data.workerName}: error occured during checkout process...`)
+                        }
+                    })
 
             }
 
