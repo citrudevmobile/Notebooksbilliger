@@ -107,7 +107,8 @@ export default function (cb) {
                             execTimer.start()
                             while (true) {
                                 try {
-                                    await page.goto('https://www.notebooksbilliger.de/apple+magsafe+charger+mhxh3zma+686049', {waitUntil: 'networkidle0', timeout: 50000})
+                                    await page.goto('https://www.notebooksbilliger.de/apple+magsafe+charger+mhxh3zma+686049', { waitUntil: 'networkidle0', timeout: 50000 })
+                                    
                                     break
                                 } catch (error) {
     
