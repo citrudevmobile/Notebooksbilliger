@@ -111,8 +111,8 @@ export default function (cb) {
                                     await page.goto('https://www.notebooksbilliger.de/apple+magsafe+charger+mhxh3zma+686049', { waitUntil: 'networkidle0', timeout: 50000 })
                                     await page.waitForSelector('.nbb-btn.btn_full.js-pdp-head-add-to-cart',{ timeout: 100000 })
                                     console.log('found add to cart button...')
-                                    await page.click('.nbb-btn.btn_full.js-pdp-head-add-to-cart', {delay: 300})
-                                    await page.waitForSelector('',{ timeout: 100000 })
+                                    await page.click('.nbb-btn.btn_full.js-pdp-head-add-to-cart', {delay: 300, clickCount: 5})
+                                    //await page.waitForSelector('',{ timeout: 100000 })
                                     break
                                 } catch (error) {
     
