@@ -103,9 +103,16 @@ export default function (cb) {
                         try {
                             console.log("Product found: started add to cart and checkout task...")
                             clearInterval(maintainSession)
-                            execTimer.start()
                             await page.waitForSelector('#haccount',{ timeout: 100000 })
-                            await page.goto('https://www.notebooksbilliger.de/apple+magsafe+charger+mhxh3zma+686049', {waitUntil: 'networkidle0', timeout: 50000})
+                            execTimer.start()
+                            while (true) {
+                                try {
+                                    await page.goto('https://www.notebooksbilliger.de/apple+magsafe+charger+mhxh3zma+686049', {waitUntil: 'networkidle0', timeout: 50000})
+                                    break
+                                } catch (error) {
+    
+                                }
+                            }
                             execTimer.stop()
                         } catch (error) {
                             console.log(`${data.workerName}: error occured during checkout process...`)
