@@ -10,7 +10,7 @@ Workers(function(pubsub) {
 
     pubsub.subscribe('ready_worker', function (data) {
         console.log(`${data.workerName} is ready`)
-        discordMessage(`Bot Worker Ready`, `${data.workerName} is ready and waiting for discovered product.`).send()
+        discordMessage(`#Bot Worker Ready`, `[${data.workerName}] is ready and waiting for discovered product.`).send()
         if(readyWorkers.length == 0) {
             setTimeout(function (pubsub) {
                 pubsub.publish('monitor_api')
@@ -28,10 +28,10 @@ Workers(function(pubsub) {
     
     monitorAPI(pubsub, function(found) {
         console.log(found)
-        discordMessage(`Product Found`, `Found the product your searching for. Bot has proceeded to checkout product.`).send()
         try {
             let readyWorker = readyWorkers.shift()
             if (readyWorker) {
+                discordMessage(`#Product Found`, `Found the product [${found.product_url}] your searching for. Bot has assigned [${readyWorker}] to checkout product.`).send()
                 pubsub.publish(`${readyWorker}_checkout`, {
                     found: found
                 })
