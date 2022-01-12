@@ -100,6 +100,7 @@ export default function (cb) {
 
                         //handle add to cart and checkout...
                     pubsub.subscribe(`${data.workerName}_checkout`, async function (result) {
+                        clearInterval(maintainSession)
                         try {
                             console.log("Product found: started add to cart and checkout task...")
                             clearInterval(maintainSession)
@@ -108,9 +109,11 @@ export default function (cb) {
                             while (true) {
                                 try {
                                     await page.goto(result.found.product_url, { waitUntil: 'networkidle0', timeout: 50000 })
-                                    await page.waitForSelector(`form[name='cart_quantity'] button[type='submit']`,{ timeout: 100000 })
+                                    await page.waitForSelector(`form[name='cart_quantity']`,{ timeout: 100000 })
                                     console.log('found add to cart button...')
-                                    await page.click(`form[name='cart_quantity'] button[type='submit']`, {delay: 300, clickCount: 5})
+                                    const form = await page.$(`form[name='cart_quantity']`);
+                                    await form.evaluate(form => form.submit()); 
+                                    console.log('added to cart...')
                                     //await page.waitForSelector('',{ timeout: 100000 })
                                     break
                                 } catch (error) {
@@ -123,6 +126,8 @@ export default function (cb) {
                             //discordMessage(`#${data.workerName} failed to checkout product.`, `contact admin for your bot to findout more`, false).send()
                         }
                     })
+
+
 
                 } else {
 
