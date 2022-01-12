@@ -86,7 +86,6 @@ export default function (cb) {
                         workerName: workerName
                     })
 
-
                             //handle add to cart and checkout...
                             pubsub.subscribe(`${data.workerName}_checkout`, async function (result) {
                                 maintainSession = false
@@ -96,13 +95,12 @@ export default function (cb) {
                                     while (true) {
                                         try {
                                             await page.goto(result.found.product_url, { waitUntil: 'networkidle0', timeout: 50000 })
-                                            await page.waitForSelector(`form[name='cart_quantity']`,{ timeout: 100000 })
+                                            await page.waitForSelector(`form[name='cart_quantity']`)
                                             console.log('found add to cart button...')
                                             const form = await page.$(`form[name='cart_quantity']`);
                                             await form.evaluate(form => form.submit()); 
                                             console.log('added to cart...')
-                                            //await page.waitForSelector('',{ timeout: 100000 })
-                                            //#cartlayer_link_checkout
+                                            await page.goto('https://notebooksbilliger.de/warenkorb', { waitUntil: 'networkidle0', timeout: 50000 })
                                             break
                                         } catch (error) {
                                             console.log('error from add to cart and checkout handler')
