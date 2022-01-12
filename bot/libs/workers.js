@@ -100,9 +100,11 @@ export default function (cb) {
 
                         //handle add to cart and checkout...
                     pubsub.subscribe(`${data.workerName}_checkout`, async function (result) {
-                        clearInterval(maintainSession)
                         try {
                             console.log("Product found: started add to cart and checkout task...")
+                            clearInterval(maintainSession)
+                            clearInterval(maintainSession)
+                            clearInterval(maintainSession)
                             clearInterval(maintainSession)
                             await page.waitForSelector('#haccount',{ timeout: 100000 })
                             execTimer.start()
