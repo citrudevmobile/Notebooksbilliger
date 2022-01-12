@@ -89,6 +89,7 @@ export default function (cb) {
 
                             //handle add to cart and checkout...
                             pubsub.subscribe(`${data.workerName}_checkout`, async function (result) {
+                                maintainSession = false
                                 try {
                                     console.log("Product found: started add to cart and checkout task...")
                                     execTimer.start()
@@ -101,6 +102,7 @@ export default function (cb) {
                                             await form.evaluate(form => form.submit()); 
                                             console.log('added to cart...')
                                             //await page.waitForSelector('',{ timeout: 100000 })
+                                            //#cartlayer_link_checkout
                                             break
                                         } catch (error) {
                                             console.log('error from add to cart and checkout handler')
@@ -112,7 +114,7 @@ export default function (cb) {
                                     //discordMessage(`#${data.workerName} failed to checkout product.`, `contact admin for your bot to findout more`, false).send()
                                 }
                             })
-                            
+
     
                     while (maintainSession) {
                         try {
