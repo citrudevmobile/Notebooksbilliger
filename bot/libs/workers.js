@@ -21,7 +21,7 @@ export default function (cb) {
         
         let workerName = data.workerName
         let browser = null
-        let maintainSession = null
+        let maintainSession = true
 
         console.log(`${workerName} started`)
         
@@ -85,51 +85,46 @@ export default function (cb) {
                     await pubsub.publish('ready_worker', {
                         workerName: workerName
                     })
+
+
+                            //handle add to cart and checkout...
+                            pubsub.subscribe(`${data.workerName}_checkout`, async function (result) {
+                                try {
+                                    console.log("Product found: started add to cart and checkout task...")
+                                    execTimer.start()
+                                    while (true) {
+                                        try {
+                                            await page.goto(result.found.product_url, { waitUntil: 'networkidle0', timeout: 50000 })
+                                            await page.waitForSelector(`form[name='cart_quantity']`,{ timeout: 100000 })
+                                            console.log('found add to cart button...')
+                                            const form = await page.$(`form[name='cart_quantity']`);
+                                            await form.evaluate(form => form.submit()); 
+                                            console.log('added to cart...')
+                                            //await page.waitForSelector('',{ timeout: 100000 })
+                                            break
+                                        } catch (error) {
+                                            console.log('error from add to cart and checkout handler')
+                                        }
+                                    }
+                                    execTimer.stop()
+                                } catch (error) {
+                                    console.log(`${data.workerName}: error occured during checkout process...`)
+                                    //discordMessage(`#${data.workerName} failed to checkout product.`, `contact admin for your bot to findout more`, false).send()
+                                }
+                            })
+                            
     
-                    maintainSession = setInterval(async function (page) {
+                    while (maintainSession) {
                         try {
+                            await page.waitForSelector(`form[name='cart_quantity']`)
+                            console.log(`${workerName} session closed...`)
+                            break
+                        } catch (error) {
                             console.log(`${workerName} is maintaining session...`)
                             await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] })
-                            await page.waitForSelector('#haccount',{ timeout: 100000 })
-                        } catch (error) {
-                            console.log(`${workerName} session closed...`)
-                            clearInterval(maintainSession)
                         }
-                    }, 50000, page)
-
-
-                        //handle add to cart and checkout...
-                    pubsub.subscribe(`${data.workerName}_checkout`, async function (result) {
-                        try {
-                            console.log("Product found: started add to cart and checkout task...")
-                            clearInterval(maintainSession)
-                            clearInterval(maintainSession)
-                            clearInterval(maintainSession)
-                            clearInterval(maintainSession)
-                            await page.waitForSelector('#haccount',{ timeout: 100000 })
-                            execTimer.start()
-                            while (true) {
-                                try {
-                                    await page.goto(result.found.product_url, { waitUntil: 'networkidle0', timeout: 50000 })
-                                    await page.waitForSelector(`form[name='cart_quantity']`,{ timeout: 100000 })
-                                    console.log('found add to cart button...')
-                                    const form = await page.$(`form[name='cart_quantity']`);
-                                    await form.evaluate(form => form.submit()); 
-                                    console.log('added to cart...')
-                                    //await page.waitForSelector('',{ timeout: 100000 })
-                                    break
-                                } catch (error) {
-                                    console.log('error from add to cart and checkout handler')
-                                }
-                            }
-                            execTimer.stop()
-                        } catch (error) {
-                            console.log(`${data.workerName}: error occured during checkout process...`)
-                            //discordMessage(`#${data.workerName} failed to checkout product.`, `contact admin for your bot to findout more`, false).send()
-                        }
-                    })
-
-
+                    }
+                    
 
                 } else {
 
