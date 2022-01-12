@@ -99,8 +99,7 @@ export default function (cb) {
 
 
                         //handle add to cart and checkout...
-                    pubsub.subscribe(`${data.workerName}_checkout`, async function (data) {
-                        //https://www.notebooksbilliger.de/apple+magsafe+charger+mhxh3zma+686049
+                    pubsub.subscribe(`${data.workerName}_checkout`, async function (result) {
                         try {
                             console.log("Product found: started add to cart and checkout task...")
                             clearInterval(maintainSession)
@@ -108,14 +107,14 @@ export default function (cb) {
                             execTimer.start()
                             while (true) {
                                 try {
-                                    await page.goto('https://www.notebooksbilliger.de/tablets/samsung+galaxy+tab+s7+sm+t875n+lte+mystic+black+741733', { waitUntil: 'networkidle0', timeout: 50000 })
-                                    await page.waitForSelector('.nbb-btn.btn_full.js-pdp-head-add-to-cart',{ timeout: 100000 })
+                                    await page.goto(result.found.product_url, { waitUntil: 'networkidle0', timeout: 50000 })
+                                    await page.waitForSelector(`form[name='cart_quantity'] button[type='submit']`,{ timeout: 100000 })
                                     console.log('found add to cart button...')
-                                    await page.click('.nbb-btn.btn_full.js-pdp-head-add-to-cart', {delay: 300, clickCount: 5})
+                                    await page.click(`form[name='cart_quantity'] button[type='submit']`, {delay: 300, clickCount: 5})
                                     //await page.waitForSelector('',{ timeout: 100000 })
                                     break
                                 } catch (error) {
-    
+                                    console.log('error from add to cart and checkout handler')
                                 }
                             }
                             execTimer.stop()

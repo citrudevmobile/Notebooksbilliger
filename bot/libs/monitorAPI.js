@@ -1,10 +1,11 @@
 import axios from 'axios-https-proxy-fix'
 
 export default function (pubsub, cb) {
-
+    
+    const time = 100000
     let timer1 = null
     let timer2 = null
-    let time = 100000
+    
 
     console.log('bot started...')
 
