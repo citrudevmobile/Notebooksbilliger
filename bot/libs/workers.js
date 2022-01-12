@@ -113,17 +113,17 @@ export default function (cb) {
                                 }
                             })
 
-    
-                    while (maintainSession) {
-                        try {
-                            await page.waitForSelector(`form[name='cart_quantity']`)
-                            console.log(`${workerName} session closed...`)
-                            break
-                        } catch (error) {
-                            console.log(`${workerName} is maintaining session...`)
-                            await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] })
-                        }
-                    }
+
+                            pubsub.subscribe('maintain_session', async function (data) {
+                                try {
+                                    await page.evaluate(() => {
+                                        location.reload(true)
+                                     })
+                                    console.log(`${workerName} is maintaining session...`)
+                                } catch (error) {
+
+                                }
+                            })
                     
 
                 } else {

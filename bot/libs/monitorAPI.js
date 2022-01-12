@@ -2,9 +2,10 @@ import axios from 'axios-https-proxy-fix'
 
 export default function (pubsub, cb) {
     
-    const time = 100000
+    const time = 1000
     let timer1 = null
     let timer2 = null
+    let counter = 0
     
 
     console.log('bot started...')
@@ -16,6 +17,14 @@ export default function (pubsub, cb) {
         timer1 = setInterval(async function (callback) {
 
             console.log('timer 1...')
+
+            if (counter > 30) {
+                pubsub.publish('maintain_session')
+                counter = 0
+            } else {
+                counter++
+            }
+            
     
             let response = null
             let products = []
@@ -55,17 +64,20 @@ export default function (pubsub, cb) {
     
                 if (products.length) {
                     clearInterval(timer1)
-                    console.log('timer1 stopped...')    
+                    clearInterval(timer2) 
+                    
+                    console.log('timers stopped...')    
                 }
     
             } catch (error) {
                 console.log(error)
                 clearInterval(timer1)
+                clearInterval(timer2) 
             }
     
         }, time, cb)
     
-    
+        /*
         timer2 = setInterval(async function (callback) {
     
             console.log('timer 2...')
@@ -93,15 +105,18 @@ export default function (pubsub, cb) {
                 }
     
                 if (products.length) {
+                    clearInterval(timer1)
                     clearInterval(timer2) 
-                    console.log('timer2 stopped...')  
+                    console.log('timers stopped...')  
                 }
             } catch (error) {
                 console.log(error)
-                clearInterval(timer2)
+                clearInterval(timer1)
+                clearInterval(timer2)      
             }
     
         }, time, cb)
+        */
 
 
     })
