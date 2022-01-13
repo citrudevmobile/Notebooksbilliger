@@ -117,8 +117,9 @@ export default function (cb) {
                                             ])
                                             
                                             console.log('added to cart...')
-                                            execTimer.stop()
+                                           
                                             await page.goto('https://www.notebooksbilliger.de/kasse', { waitUntil: 'domcontentloaded', timeout: 50000 })
+                                            execTimer.stop()
                                             await page.waitForTimeout(100000)
                                            
                                             break
