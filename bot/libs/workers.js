@@ -33,14 +33,14 @@ export default function (cb) {
                     headless: false,
                     defaultViewport: null,
                     executablePath: `C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe`,
-                    args:['--start-maximized', `--proxy-server=${data.proxyServer}`, ],
+                    args:['--start-maximized', `--proxy-server=${data.proxyServer}`, `--blink-settings=imagesEnabled=false`],
                 })
             } catch (error) {
                 try {
                     browser = await puppeteer.launch({
                         headless: false,
                         defaultViewport: null,
-                        args:['--start-maximized', `--proxy-server=${data.proxyServer}`],
+                        args:['--start-maximized', `--proxy-server=${data.proxyServer}`, `--blink-settings=imagesEnabled=false`],
                     })
                 } catch (error) {
                     console.log(error)
