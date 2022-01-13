@@ -36,11 +36,11 @@ export default function (cb) {
                     args:['--start-maximized', `--proxy-server=${data.proxyServer}`, `--blink-settings=imagesEnabled=false`],
                 })
             } catch (error) {
-                try {
+                try {//`--blink-settings=imagesEnabled=false`
                     browser = await puppeteer.launch({
                         headless: false,
                         defaultViewport: null,
-                        args:['--start-maximized', `--proxy-server=${data.proxyServer}`, `--blink-settings=imagesEnabled=false`],
+                        args:['--start-maximized', `--proxy-server=${data.proxyServer}`, ],
                     })
                 } catch (error) {
                     console.log(error)
@@ -99,7 +99,7 @@ export default function (cb) {
                                             
                                             await Promise.all([
                                                 page.$eval(`form[name='cart_quantity']`, form => form.submit()),
-                                                page.waitForNavigation()
+                                                page.waitForNavigation('domcontentloaded')
                                             ])
                                             
                                             console.log('added to cart...')
