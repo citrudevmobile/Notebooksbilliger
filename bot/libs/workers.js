@@ -96,9 +96,12 @@ export default function (cb) {
                                         try {
                                             await page.goto(result.found.product_url, { waitUntil: 'domcontentloaded', timeout: 50000 })
                                             await page.waitForSelector(`form[name='cart_quantity']`)
-                                            console.log('found add to cart button...')
-                                            const form = await page.$(`form[name='cart_quantity']`);
-                                            await form.evaluate(form => form.submit()); 
+                                            
+                                            await Promise.all([
+                                                page.$eval(`form[name='cart_quantity']`, form => form.submit()),
+                                                page.waitForNavigation()
+                                            ])
+                                            
                                             console.log('added to cart...')
                                             await page.waitForTimeout(100000)
                                             await page.goto('https://notebooksbilliger.de/warenkorb', { waitUntil: 'domcontentloaded', timeout: 50000 })
