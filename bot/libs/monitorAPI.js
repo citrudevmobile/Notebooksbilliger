@@ -16,7 +16,7 @@ export default function (pubsub, cb) {
         
         timer1 = setInterval(async function (callback) {
 
-            console.log('timer 1...')
+            console.log('API 1 request...')
 
             if (counter > 10) {
                 pubsub.publish('maintain_session')
@@ -80,7 +80,7 @@ export default function (pubsub, cb) {
         /*
         timer2 = setInterval(async function (callback) {
     
-            console.log('timer 2...')
+            console.log('API 1 request...')
     
             let response = null
             let products = []
