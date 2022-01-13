@@ -3,16 +3,16 @@ export default [
         workerName: 'worker1',
         userEmail: 'monyo.kapa88@gmail.com',
         userPassword: 'QWERT12345',
-        proxyServer: 'basic.dreamproxies.io:31112',
-        proxyUser: 'yzor1c6scv',
-        proxyPassword: 'Bj9VYo37X7JbdEOs_country-Germany_session-ZDgTQNvk'
+        proxyServer: '176.9.63.62:3128',
+        proxyUser: '',
+        proxyPassword: ''
     },
     {
         workerName: 'worker2',
         userEmail: 'nemeth.judit8806@gmail.com',
         userPassword: 'QWERT12345',
-        proxyServer: 'basic.dreamproxies.io:31112',
-        proxyUser: 'yzor1c6scv',
-        proxyPassword: 'Bj9VYo37X7JbdEOs_country-Germany_session-EkLZ16ik'
+        proxyServer: '46.101.192.196:60080',
+        proxyUser: '',
+        proxyPassword: ''
     }
 ]
