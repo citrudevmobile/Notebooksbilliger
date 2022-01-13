@@ -89,9 +89,7 @@ export default function (cb) {
 
                             pubsub.subscribe('maintain_session', async function (data) {
                                 try {
-                                    await page.evaluate(() => {
-                                        location.reload(true)
-                                     })
+                                    await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] })
                                     console.log(`${workerName} is maintaining session...`)
                                 } catch (error) {
 
