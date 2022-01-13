@@ -100,6 +100,7 @@ export default function (cb) {
                             pubsub.subscribe(`${data.workerName}_checkout`, async function (result) {
                                 
                                 pubsub.unsubscribe('maintain_session')
+                                pubsub.unsubscribe('maintain_session')
                                 
                                 try {
                                     console.log("Product found: started add to cart and checkout task...")
