@@ -21,7 +21,7 @@ export default function (cb) {
         
         let workerName = data.workerName
         let browser = null
-        let maintainSession = true
+        
 
         console.log(`${workerName} started`)
         
@@ -88,9 +88,22 @@ export default function (cb) {
                                 workerName: workerName
                             })
 
+                            pubsub.subscribe('maintain_session', async function (data) {
+                                try {
+                                    await page.evaluate(() => {
+                                        location.reload(true)
+                                     })
+                                    console.log(`${workerName} is maintaining session...`)
+                                } catch (error) {
+
+                                }
+                            })
+
                             //handle add to cart and checkout...
                             pubsub.subscribe(`${data.workerName}_checkout`, async function (result) {
-                                maintainSession = false
+                                
+                                pubsub.unsubscribe('maintain_session')
+                                
                                 try {
                                     console.log("Product found: started add to cart and checkout task...")
                                     execTimer.start()
@@ -122,16 +135,7 @@ export default function (cb) {
                             })
 
 
-                            pubsub.subscribe('maintain_session', async function (data) {
-                                try {
-                                    await page.evaluate(() => {
-                                        location.reload(true)
-                                     })
-                                    console.log(`${workerName} is maintaining session...`)
-                                } catch (error) {
-
-                                }
-                            })
+                          
                     
 
                 } else {
