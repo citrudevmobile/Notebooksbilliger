@@ -62,7 +62,7 @@ export default function (cb) {
                 let x = 0
                 while (x < retry) {
                     try {
-                        await page.goto(storeUrl, {waitUntil: 'domcontentloaded', timeout: 50000})
+                        await page.goto(storeUrl, {waitUntil: 'networkIdle0', timeout: 50000})
                         await page.waitForSelector('#uc-btn-accept-banner', { timeout: 50000 })
                         await page.click('#uc-btn-accept-banner', { delay: 300 })
                         await page.goto(loginPage, {waitUntil: 'domcontentloaded', timeout: 100000})
