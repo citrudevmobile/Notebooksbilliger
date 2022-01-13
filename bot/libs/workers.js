@@ -76,7 +76,7 @@ export default function (cb) {
                         await page.waitForSelector('#haccount',{ timeout: 100000 })
                         break;
                     } catch (error) {
-                        console.log(`${workerName} failed to login...`)
+                        console.log(`${workerName} retry login...`)
                     }
                     x++
                 }
