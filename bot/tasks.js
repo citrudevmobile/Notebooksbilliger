@@ -13,6 +13,6 @@ export default [
         userPassword: 'QWERT12345',
         proxyServer: 'basic.dreamproxies.io:31112',
         proxyUser: 'yzor1c6scv',
-        proxyPassword: 'Bj9VYo37X7JbdEOs_country-Germany_session-meOEAuxx'
+        proxyPassword: 'Bj9VYo37X7JbdEOs_country-Germany_session-EkLZ16ik'
     }
 ]
