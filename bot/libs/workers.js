@@ -105,14 +105,16 @@ export default function (cb) {
                                             ])
                                             
                                             console.log('added to cart...')
-                                            await page.waitForTimeout(100000)
+                                            execTimer.stop()
                                             await page.goto('https://notebooksbilliger.de/warenkorb', { waitUntil: 'domcontentloaded', timeout: 50000 })
+                                            await page.waitForTimeout(100000)
+                                           
                                             break
                                         } catch (error) {
                                             console.log('error from add to cart and checkout handler')
                                         }
                                     }
-                                    execTimer.stop()
+                                    
                                 } catch (error) {
                                     console.log(`${data.workerName}: error occured during checkout process...`)
                                     //discordMessage(`#${data.workerName} failed to checkout product.`, `contact admin for your bot to findout more`, false).send()
