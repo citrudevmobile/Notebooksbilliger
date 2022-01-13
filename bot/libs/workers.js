@@ -100,6 +100,7 @@ export default function (cb) {
                                             const form = await page.$(`form[name='cart_quantity']`);
                                             await form.evaluate(form => form.submit()); 
                                             console.log('added to cart...')
+                                            await page.waitForTimeout(100000)
                                             await page.goto('https://notebooksbilliger.de/warenkorb', { waitUntil: 'domcontentloaded', timeout: 50000 })
                                             break
                                         } catch (error) {
