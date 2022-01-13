@@ -104,10 +104,12 @@ export default function (cb) {
                                 pubsub.unsubscribe('maintain_session')
 
                                 try {
+                                    await page.waitForSelector(`#haccount`)
                                     console.log("Product found: started add to cart and checkout task...")
                                     execTimer.start()
                                     while (true) {
                                         try {
+                                           
                                             await page.goto(result.found.product_url, { waitUntil: 'domcontentloaded', timeout: 50000 })
                                             await page.waitForSelector(`form[name='cart_quantity']`)
                                             
