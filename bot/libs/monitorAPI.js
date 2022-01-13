@@ -2,7 +2,7 @@ import axios from 'axios-https-proxy-fix'
 
 export default function (pubsub, cb) {
     
-    const time = 5000
+    const time = 3000
     let timer1 = null
     let timer2 = null
     let counter = 0
