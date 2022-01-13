@@ -5,7 +5,7 @@ export default [
         userPassword: 'QWERT12345',
         proxyServer: 'basic.dreamproxies.io:31112',
         proxyUser: 'yzor1c6scv',
-        proxyPassword: ':Bj9VYo37X7JbdEOs_country-Germany_session-tmGzEk7K'
+        proxyPassword: 'Bj9VYo37X7JbdEOs_country-Germany_session-tmGzEk7K'
     },
     {
         workerName: 'worker2',
