@@ -62,10 +62,10 @@ export default function (cb) {
                 let x = 0
                 while (x < retry) {
                     try {
-                        await page.goto(storeUrl, {waitUntil: 'networkidle0', timeout: 50000})
+                        await page.goto(storeUrl, {waitUntil: 'domcontentloaded', timeout: 50000})
                         await page.waitForSelector('#uc-btn-accept-banner', { timeout: 50000 })
                         await page.click('#uc-btn-accept-banner', { delay: 300 })
-                        await page.goto(loginPage, {waitUntil: 'networkidle0', timeout: 100000})
+                        await page.goto(loginPage, {waitUntil: 'domcontentloaded', timeout: 100000})
                         await page.waitForSelector('#f_email_address', { timeout: 100000 })
                         await page.waitForSelector('#f_password', { timeout: 100000 })
                         await page.type('#f_email_address', data.userEmail, {delay: 300})
@@ -94,13 +94,13 @@ export default function (cb) {
                                     execTimer.start()
                                     while (true) {
                                         try {
-                                            await page.goto(result.found.product_url, { waitUntil: 'networkidle0', timeout: 50000 })
+                                            await page.goto(result.found.product_url, { waitUntil: 'domcontentloaded', timeout: 50000 })
                                             await page.waitForSelector(`form[name='cart_quantity']`)
                                             console.log('found add to cart button...')
                                             const form = await page.$(`form[name='cart_quantity']`);
                                             await form.evaluate(form => form.submit()); 
                                             console.log('added to cart...')
-                                            await page.goto('https://notebooksbilliger.de/warenkorb', { waitUntil: 'networkidle0', timeout: 50000 })
+                                            await page.goto('https://notebooksbilliger.de/warenkorb', { waitUntil: 'domcontentloaded', timeout: 50000 })
                                             break
                                         } catch (error) {
                                             console.log('error from add to cart and checkout handler')
