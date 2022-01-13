@@ -90,7 +90,7 @@ export default function (cb) {
 
                             pubsub.subscribe('maintain_session', async function (data) {
                                 try {
-                                    await page.reload({ waitUntil: ["networkidle0", "domcontentloaded"] })
+                                    await page.goto(storeUrl, {waitUntil: 'networkidle0', timeout: 50000})
                                     console.log(`${workerName} is maintaining session...`)
                                 } catch (error) {
 
