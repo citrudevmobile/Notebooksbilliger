@@ -137,11 +137,6 @@ export default function (cb) {
                 console.log(error)
             }
         }
-            
-      
     })
-
-
     cb(pubsub)
-
 }
