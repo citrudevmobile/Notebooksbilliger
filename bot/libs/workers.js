@@ -97,7 +97,7 @@ export default function (cb) {
 
                                 }
                             })
-
+                            //name="shopping_cart_refresh"
                             //handle add to cart and checkout...
                             pubsub.subscribe(`${data.workerName}_checkout`, async function (result) {
                                 
@@ -118,7 +118,7 @@ export default function (cb) {
                                             
                                             console.log('added to cart...')
                                             execTimer.stop()
-                                            await page.goto('https://notebooksbilliger.de/warenkorb', { waitUntil: 'domcontentloaded', timeout: 50000 })
+                                            await page.goto('https://www.notebooksbilliger.de/kasse', { waitUntil: 'domcontentloaded', timeout: 50000 })
                                             await page.waitForTimeout(100000)
                                            
                                             break
