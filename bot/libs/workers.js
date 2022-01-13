@@ -58,7 +58,7 @@ export default function (cb) {
         
                 await page.setUserAgent(randUserAgent.toString())
 
-                let retry = 5
+                let retry = 10
                 let x = 0
                 while (x < retry) {
                     try {
