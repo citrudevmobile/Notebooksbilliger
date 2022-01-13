@@ -133,10 +133,6 @@ export default function (cb) {
                                 }
                             })
 
-
-                          
-                    
-
                 } else {
 
                     console.log(`${data.workerName} failed to login. Please check proxy`)
