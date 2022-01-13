@@ -66,7 +66,7 @@ export default function (cb) {
                         await page.goto(storeUrl, {waitUntil: 'networkidle0', timeout: 50000})
                         await page.waitForSelector('#uc-btn-accept-banner', { timeout: 50000 })
                         await page.click('#uc-btn-accept-banner', { delay: 300 })
-                        await page.goto(loginPage, {waitUntil: 'domcontentloaded', timeout: 100000})
+                        await page.goto(loginPage, {waitUntil: 'networkidle0', timeout: 100000})
                         await page.waitForSelector('#f_email_address', { timeout: 100000 })
                         await page.waitForSelector('#f_password', { timeout: 100000 })
                         await page.type('#f_email_address', data.userEmail, {delay: 300})
@@ -75,6 +75,7 @@ export default function (cb) {
                         await page.waitForSelector('#haccount',{ timeout: 100000 })
                         break;
                     } catch (error) {
+                        console.log(error)
                         console.log(`${workerName} failed to login...`)
                     }
                     x++
