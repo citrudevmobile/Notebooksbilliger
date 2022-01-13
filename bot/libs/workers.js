@@ -72,9 +72,9 @@ export default function (cb) {
                         await page.type('#f_password', data.userPassword, {delay: 300})
                         await page.click(`button[value="Weiter"]`, {delay: 300})
                         await page.waitForSelector('#haccount',{ timeout: 100000 })
-
                         break;
                     } catch (error) {
+                        console.log('failed to login...')
                     }
                     x++
                 }
@@ -82,9 +82,9 @@ export default function (cb) {
                
                 if ((await page.$('#haccount'))) {
 
-                    await pubsub.publish('ready_worker', {
-                        workerName: workerName
-                    })
+                            await pubsub.publish('ready_worker', {
+                                workerName: workerName
+                            })
 
                             //handle add to cart and checkout...
                             pubsub.subscribe(`${data.workerName}_checkout`, async function (result) {
