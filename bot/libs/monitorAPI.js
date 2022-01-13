@@ -18,7 +18,7 @@ export default function (pubsub, cb) {
 
             console.log('timer 1...')
 
-            if (counter > 30) {
+            if (counter > 10) {
                 pubsub.publish('maintain_session')
                 counter = 0
             } else {
