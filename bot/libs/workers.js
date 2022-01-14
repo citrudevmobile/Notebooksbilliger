@@ -105,9 +105,10 @@ export default function (cb) {
                                 pubsub.unsubscribe('maintain_session')
 
                                 try {
+                                    execTimer.start()
                                     await page.waitForSelector(`#haccount`)
                                     console.log("Product found: started add to cart and checkout task...")
-                                    execTimer.start()
+                                    
                                     while (true) {
                                         try {
                                            
