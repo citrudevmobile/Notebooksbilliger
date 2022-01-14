@@ -128,7 +128,7 @@ export default function (cb) {
                                            
                                             break
                                         } catch (error) {
-                                            console.log('error from add to cart and checkout handler')
+                                            console.log(`${data.workerName}: error occured during checkout process trying again...`)
                                         }
                                     }
                                     
