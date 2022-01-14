@@ -57,12 +57,13 @@ export default function (cb) {
                     password: data.proxyPassword,
                 })
         
-                await page.setUserAgent(randUserAgent.toString())
+               
 
                 let retry = 10
                 let x = 0
                 while (x < retry) {
                     try {
+                        await page.setUserAgent(randUserAgent.toString())
                         await page.goto(storeUrl, {waitUntil: 'networkidle0', timeout: 50000})
                         await page.waitForSelector('#uc-btn-accept-banner', { timeout: 50000 })
                         await page.click('#uc-btn-accept-banner', { delay: 300 })
