@@ -56,31 +56,8 @@ export default function (cb) {
                     username: data.proxyUser,
                     password: data.proxyPassword,
                 })
-                /*
 
-                const [button] = await page.$x("//button[contains(., 'Button text')]");
-                if (button) {
-                    await button.click();
-                }
-
-                */
-
-                while (true) {
-                    try {
-                        if ((await page.$x("//button[contains(., 'Click to start verification')]")) !== null) {
-                            await page.waitForXPath("//button[contains(., 'Click to start verification')]")
-                            const [button] = await page.$x("//button[contains(., 'Click to start verification')]");
-                            if (button) {
-                                await button.click();
-                            }
-                            break;
-                        } else {
-                            console.log('Captcha not found...')
-                        }
-                    } catch (error) {
-                        console.log(error)
-                    }
-                }
+              
                
 
                 let retry = 10
@@ -145,6 +122,23 @@ export default function (cb) {
                                             console.log('added to cart...')
                                            
                                             await page.goto('https://www.notebooksbilliger.de/kasse', { waitUntil: 'domcontentloaded', timeout: 50000 })
+                                            
+                                            while (true) {
+                                                try {
+                                                    if ((await page.$x("//button[contains(., 'Click to start verification')]")) !== null) {
+                                                        await page.waitForXPath("//button[contains(., 'Click to start verification')]")
+                                                        const [button] = await page.$x("//button[contains(., 'Click to start verification')]");
+                                                        if (button) {
+                                                            await button.click();
+                                                        }
+                                                        break;
+                                                    } else {
+                                                        console.log('Captcha not found...')
+                                                    }
+                                                } catch (error) {
+                                                    console.log(error)
+                                                }
+                                            }
                                             
                                             execTimer.stop()
 
