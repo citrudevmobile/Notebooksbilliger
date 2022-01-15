@@ -65,18 +65,21 @@ export default function (cb) {
 
                 */
 
-
-                try {
-                    await page.setUserAgent(randUserAgent.toString())
-                    await page.goto(`https://friendlycaptcha.com/`, {waitUntil: 'networkidle0', timeout: 50000})
-                    await page.waitForXPath("//button[contains(., 'Click to start verification')]")
-                    const [button] = await page.$x("//button[contains(., 'Click to start verification')]");
-                    if (button) {
-                        await button.click();
+                while (true) {
+                    try {
+                        if ((await page.$x("//button[contains(., 'Click to start verification')]")) !== null) {
+                            await page.waitForXPath("//button[contains(., 'Click to start verification')]")
+                            const [button] = await page.$x("//button[contains(., 'Click to start verification')]");
+                            if (button) {
+                                await button.click();
+                            }
+                            break;
+                        } else {
+                            console.log('Captcha not found...')
+                        }
+                    } catch (error) {
+                        console.log(error)
                     }
-                    await page.waitForTimeout(5000000)
-                } catch (error) {
-                    console.log(error)
                 }
                
 
@@ -118,8 +121,7 @@ export default function (cb) {
 
                                 }
                             })
-                            //name="shopping_cart_refresh"
-                            //handle add to cart and checkout...
+                            
                             pubsub.subscribe(`${data.workerName}_checkout`, async function (result) {
                                 
                                 pubsub.unsubscribe('maintain_session')
@@ -128,8 +130,7 @@ export default function (cb) {
                                 try {
                                     execTimer.start()
                                     await page.waitForSelector(`#haccount`)
-                                    console.log("Product found: started add to cart and checkout task...")
-                                    
+                                    console.log(`Product found: started add to cart and checkout task...`)
                                     while (true) {
                                         try {
                                            
@@ -144,7 +145,9 @@ export default function (cb) {
                                             console.log('added to cart...')
                                            
                                             await page.goto('https://www.notebooksbilliger.de/kasse', { waitUntil: 'domcontentloaded', timeout: 50000 })
+                                            
                                             execTimer.stop()
+
                                             await page.waitForTimeout(100000)
                                            
                                             break
@@ -160,13 +163,10 @@ export default function (cb) {
                             })
 
                 } else {
-
                     console.log(`${data.workerName} failed to login. Please check proxy`)
-                    
                 }
         
             } catch (error) {
-        
                 console.log(error)
             }
         }
