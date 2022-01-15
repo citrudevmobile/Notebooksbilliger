@@ -149,7 +149,6 @@ export default function (cb) {
                                             console.log(`${data.workerName}: error occured during checkout process trying again...`)
                                         }
                                     }
-                                    
                                 } catch (error) {
                                     console.log(`${data.workerName}: error occured during checkout process...`)
                                     //discordMessage(`#${data.workerName} failed to checkout product.`, `contact admin for your bot to findout more`, false).send()
