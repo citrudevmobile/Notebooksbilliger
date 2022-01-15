@@ -69,7 +69,7 @@ export default function (cb) {
                 try {
                     await page.setUserAgent(randUserAgent.toString())
                     await page.goto(`https://friendlycaptcha.com/`, {waitUntil: 'networkidle0', timeout: 50000})
-                    await page.waitForSelector('.frc-button')
+                    await page.waitForXPath("//button[contains(., 'Click to start verification')]")
                     const [button] = await page.$x("//button[contains(., 'Click to start verification')]");
                     if (button) {
                         await button.click();
