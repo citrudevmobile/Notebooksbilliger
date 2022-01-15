@@ -56,7 +56,25 @@ export default function (cb) {
                     username: data.proxyUser,
                     password: data.proxyPassword,
                 })
-        
+                /*
+
+                const [button] = await page.$x("//button[contains(., 'Button text')]");
+                if (button) {
+                    await button.click();
+                }
+
+                */
+
+
+                try {
+                    await page.setUserAgent(randUserAgent.toString())
+                    await page.goto(`https://friendlycaptcha.com/`, {waitUntil: 'networkidle0', timeout: 50000})
+                    await page.waitForSelector('.frc-button')
+                    await page.waitForTimeout(5000000)
+
+                } catch (error) {
+
+                }
                
 
                 let retry = 10
