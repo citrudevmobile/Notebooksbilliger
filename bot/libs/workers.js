@@ -58,8 +58,6 @@ export default function (cb) {
                 })
 
               
-               
-
                 let retry = 10
                 let x = 0
                 while (x < retry) {
@@ -125,15 +123,17 @@ export default function (cb) {
                                             
                                             while (true) {
                                                 try {
-                                                    if ((await page.$x("//button[contains(., 'Click to start verification')]")) !== null) {
+                                                    if ((await page.$x("//button[contains(., 'Click to start verification')]"))) {
                                                         await page.waitForXPath("//button[contains(., 'Click to start verification')]")
                                                         const [button] = await page.$x("//button[contains(., 'Click to start verification')]");
                                                         if (button) {
                                                             await button.click();
                                                         }
                                                         break;
-                                                    } else {
+                                                    } else if ((await page.$('.section-box-hd.head'))) {
+                                                        
                                                         console.log('Captcha not found...')
+                                                        break
                                                     }
                                                 } catch (error) {
                                                     console.log(error)
