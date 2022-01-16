@@ -124,7 +124,7 @@ export default function (cb) {
                                             
                                             while (true) {
                                                 try {
-                                                    await page.waitForXPath("//button[contains(., 'Click to start verification')]", {timeout: 1000})
+                                                    await page.waitForXPath("//button[contains(., 'Click to start verification')]", {timeout: 500})
                                                     console.log('captcha found...')
                                                     await page.waitForTimeout(5000000)
                                                     await page.waitForXPath("//button[contains(., 'Click to start verification')]")
@@ -136,7 +136,7 @@ export default function (cb) {
                                                 } catch (error) {
                                                     console.log('captcha not found error...')
                                                     try {
-                                                        await page.waitForSelector('.section-box-hd.head', {timeout: 1000})
+                                                        await page.waitForSelector('.section-box-hd.head', {timeout: 500})
                                                         console.log('Checkout found')
                                                         await page.waitForTimeout(5000000)
                                                     } catch (error) {
