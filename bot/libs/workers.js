@@ -136,11 +136,11 @@ export default function (cb) {
                                                         await page.waitForSelector('.section-box-hd.head', {timeout: 500})
                                                         console.log('Checkout found...')
                                                         await page.click('#paycreditcard', {delay: 100})
-                                                        await page.click('#shipupsexpressmoneyorder_55', {delay: 100})
+                                                        await page.click(`input[value="upsexpress"]`, {delay: 100})
                                                         await page.$eval('#conditions', check => check.checked = true);
-                                                        await page.click('#paycreditcard', {delay: 100})
                                                         
-                                                        await page.waitForTimeout(10000)
+                                                        
+                                                        await page.waitForTimeout(1000000)
                                                         await Promise.all([
                                                             page.$eval(`form[id="checkoutForm"]`, form => form.submit()),
                                                             page.waitForNavigation('domcontentloaded')
@@ -148,6 +148,7 @@ export default function (cb) {
                                                         console.log('At final page...')
                                                         await page.waitForTimeout(5000000)
                                                     } catch (error) {
+                                                        console.log(error)
                                                         console.log('Checkout not found...')
                                                     }
                                                 }
