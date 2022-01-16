@@ -100,8 +100,6 @@ export default function (cb) {
                             
                             pubsub.subscribe(`${data.workerName}_checkout`, async function (result) {
                                 
-                                
-                                
                                 try {
                                     execTimer.start()
                                     console.log('maintain_session stopped...')
@@ -125,6 +123,8 @@ export default function (cb) {
                                             while (true) {
                                                 try {
                                                     if ((await page.$x("//button[contains(., 'Click to start verification')]"))) {
+                                                        console.log('captcha found...')
+                                                        await page.waitForTimeout(5000000)
                                                         await page.waitForXPath("//button[contains(., 'Click to start verification')]")
                                                         const [button] = await page.$x("//button[contains(., 'Click to start verification')]");
                                                         if (button) {
