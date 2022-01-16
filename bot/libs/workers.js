@@ -136,7 +136,7 @@ export default function (cb) {
                                                         await page.waitForSelector('.section-box-hd.head', {timeout: 500})
                                                         console.log('Checkout found...')
                                                         await page.click('#paycreditcard', {delay: 100})
-                                                        await page.click(`input[value="upsexpress"]`, {delay: 100})
+                                                        //await page.click(`input[value="upsexpress"]`, {delay: 100})
                                                         await page.$eval('#conditions', check => check.checked = true);
                                                         
                                                         
