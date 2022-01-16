@@ -100,8 +100,7 @@ export default function (cb) {
                             
                             pubsub.subscribe(`${data.workerName}_checkout`, async function (result) {
                                 
-                                pubsub.unsubscribe('maintain_session')
-                               
+                                
                                 
                                 try {
                                     execTimer.start()

@@ -63,14 +63,15 @@ export default function (pubsub, cb) {
                 }
     
                 if (products.length) {
+                    pubsub.unsubscribe('maintain_session')
                     clearInterval(timer1)
-                    clearInterval(timer2) 
-                    
+                    clearInterval(timer2)         
                     console.log('timers stopped...')    
                 }
     
             } catch (error) {
                 console.log(error)
+                pubsub.unsubscribe('maintain_session')
                 clearInterval(timer1)
                 clearInterval(timer2) 
             }
@@ -105,14 +106,16 @@ export default function (pubsub, cb) {
                 }
     
                 if (products.length) {
+                    pubsub.unsubscribe('maintain_session')
                     clearInterval(timer1)
-                    clearInterval(timer2) 
-                    console.log('timers stopped...')  
+                    clearInterval(timer2)         
+                    console.log('timers stopped...')     
                 }
             } catch (error) {
-                console.log(error)
+                pubsub.unsubscribe('maintain_session')
                 clearInterval(timer1)
-                clearInterval(timer2)      
+                clearInterval(timer2)         
+                console.log('timers stopped...')        
             }
     
         }, time, cb)
