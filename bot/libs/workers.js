@@ -27,8 +27,7 @@ export default function (cb) {
         
         if (!workers.includes(workerName)){
             workers.push(workerName)
-            //`--blink-settings=imagesEnabled=false`
-            // `--blink-settings=imagesEnabled=false`
+           
             try {
                 browser = await puppeteer.launch({
                     headless: false,
@@ -63,7 +62,6 @@ export default function (cb) {
                 let x = 0
                 while (x < retry) {
                     try {
-                        
                         await page.goto(storeUrl, {waitUntil: 'networkidle0', timeout: 50000})
                         await page.waitForSelector('#uc-btn-accept-banner', { timeout: 50000 })
                         await page.click('#uc-btn-accept-banner', { delay: 300 })
