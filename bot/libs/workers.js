@@ -124,22 +124,26 @@ export default function (cb) {
                                             
                                             while (true) {
                                                 try {
-                                                    if ((await page.$x("//button[contains(., 'Click to start verification')]")) !== null) {
-                                                        console.log('captcha found...')
-                                                        await page.waitForTimeout(5000000)
-                                                        await page.waitForXPath("//button[contains(., 'Click to start verification')]")
-                                                        const [button] = await page.$x("//button[contains(., 'Click to start verification')]");
-                                                        if (button) {
-                                                            await button.click();
-                                                        }
-                                                        break;
-                                                    } else if ((await page.$('.section-box-hd.head')) != null) {
-                                                        
-                                                        console.log('Captcha not found...')
-                                                        break
+                                                    await page.$x("//button[contains(., 'Click to start verification')]")
+                                                    console.log('captcha found...')
+                                                    await page.waitForTimeout(5000000)
+                                                    await page.waitForXPath("//button[contains(., 'Click to start verification')]")
+                                                    const [button] = await page.$x("//button[contains(., 'Click to start verification')]");
+                                                    if (button) {
+                                                        await button.click();
                                                     }
+                                                    break;
                                                 } catch (error) {
-                                                    console.log(error)
+                                                    console.log('captcha not found error...')
+                                                    try {
+
+                                                        await page.$('.section-box-hd.head')
+                                                        console.log('Checkout found')
+                                                        await page.waitForTimeout(5000000)
+                                                    } catch (error) {
+
+                                                        console.log('checkout not found error...')
+                                                    }
                                                 }
                                             }
                                             
