@@ -137,6 +137,8 @@ export default function (cb) {
                                                         console.log('Checkout found...')
                                                         await page.click('#paycreditcard', {delay: 100})
                                                         //await page.click(`input[value="upsexpress"]`, {delay: 100})
+                                                        const shipping  = await page.$('#shipupsexpresscreditcard_55')
+                                                        await shipping.click()
                                                         await page.$eval('#conditions', check => check.checked = true);
                                                         
                                                         
