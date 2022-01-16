@@ -122,7 +122,7 @@ export default function (cb) {
                                             
                                             while (true) {
                                                 try {
-                                                    if ((await page.$x("//button[contains(., 'Click to start verification')]"))) {
+                                                    if ((await page.$x("//button[contains(., 'Click to start verification')]")) !== null) {
                                                         console.log('captcha found...')
                                                         await page.waitForTimeout(5000000)
                                                         await page.waitForXPath("//button[contains(., 'Click to start verification')]")
@@ -131,7 +131,7 @@ export default function (cb) {
                                                             await button.click();
                                                         }
                                                         break;
-                                                    } else if ((await page.$('.section-box-hd.head'))) {
+                                                    } else if ((await page.$('.section-box-hd.head')) != null) {
                                                         
                                                         console.log('Captcha not found...')
                                                         break
