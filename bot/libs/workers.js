@@ -145,6 +145,7 @@ export default function (cb) {
                                                             page.waitForNavigation('domcontentloaded')
                                                         ])
 
+                                                        await page.waitForSelector(`form[name="checkout_summary_form"]`, { timeout: 100000 })
                                                         console.log('At final page...')
                                                         await page.waitForTimeout(5000000)
 
@@ -173,6 +174,7 @@ export default function (cb) {
                                                             page.waitForNavigation('domcontentloaded')
                                                         ])
 
+                                                        await page.waitForSelector(`form[name="checkout_summary_form"]`, { timeout: 100000 })
                                                         console.log('At final page...')
                                                         await page.waitForTimeout(5000000)
 
@@ -180,7 +182,7 @@ export default function (cb) {
                                                             page.$eval(`form[name="checkout_summary_form"]`, form => form.submit()),
                                                             page.waitForNavigation('domcontentloaded')
                                                         ])
-                                                        
+
                                                         break;
                                                     } catch (error) {
                                                         console.log(error)
