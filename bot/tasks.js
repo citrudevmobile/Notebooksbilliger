@@ -6,7 +6,10 @@ export default [
         proxyServer: 'basic.dreamproxies.io:31112',
         proxyUser: 'yzor1c6scv',
         proxyPassword: 'Bj9VYo37X7JbdEOs_country-Germany_session-L1yNCfhH'
-    },
+    }
+]
+
+/*
     {
         workerName: 'worker2',
         userEmail: 'nemeth.judit8806@gmail.com',
@@ -15,4 +18,4 @@ export default [
         proxyUser: 'yzor1c6scv',
         proxyPassword: 'Bj9VYo37X7JbdEOs_country-Germany_session-3eoSiATw'
     }
-]
+*/
