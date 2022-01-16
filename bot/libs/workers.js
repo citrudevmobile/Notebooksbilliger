@@ -98,10 +98,11 @@ export default function (cb) {
                             pubsub.subscribe(`${data.workerName}_checkout`, async function (result) {
                                 
                                 pubsub.unsubscribe('maintain_session')
-                                pubsub.unsubscribe('maintain_session')
+                               
 
                                 try {
                                     execTimer.start()
+                                    console.log('maintain_session stopped...')
                                     await page.waitForSelector(`#haccount`)
                                     console.log(`Product found: started add to cart and checkout task...`)
                                     while (true) {
