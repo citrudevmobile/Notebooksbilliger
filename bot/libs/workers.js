@@ -129,12 +129,14 @@ export default function (cb) {
                                                     if (button) {
                                                         await button.click();
                                                     }
+                                                    await page.waitForSelector('.section-box-hd.head', {timeout: 100000})
+
                                                     break;
                                                 } catch (error) {
                                                     console.log('Captcha not found...')
                                                     try {
                                                         await page.waitForSelector('.section-box-hd.head', {timeout: 500})
-                                                        console.log('Checkout found...')
+                                                        console.log('Checkout ready...')
                                                        
                                                         const creditCard  = await page.$('#paycreditcard')
                                                         await creditCard.click()
@@ -142,11 +144,10 @@ export default function (cb) {
                                                         const shipping  = await page.$('#shipupsexpresscreditcard_55')
                                                         await shipping.click()
 
-                                                        const conditions  = await page.$('#conditions')
-                                                        await conditions.click()
+                                                        await page.$eval('#conditions', check => check.checked = true)
                                                         
                                                         await page.waitForTimeout(10000)
-                                                        
+
                                                         await Promise.all([
                                                             page.$eval(`form[id="checkoutForm"]`, form => form.submit()),
                                                             page.waitForNavigation('domcontentloaded')
