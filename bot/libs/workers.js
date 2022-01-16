@@ -139,14 +139,16 @@ export default function (cb) {
                                                         //await page.click(`input[value="upsexpress"]`, {delay: 100})
                                                         const shipping  = await page.$('#shipupsexpresscreditcard_55')
                                                         await shipping.click()
-                                                        await page.$eval('#conditions', check => check.checked = true);
+
+                                                        const conditions  = await page.$('#conditions')
+                                                        await conditions.click()
                                                         
-                                                        
-                                                        await page.waitForTimeout(1000000)
+                                                        await page.waitForTimeout(10000)
                                                         await Promise.all([
                                                             page.$eval(`form[id="checkoutForm"]`, form => form.submit()),
                                                             page.waitForNavigation('domcontentloaded')
                                                         ])
+                                                        
                                                         console.log('At final page...')
                                                         await page.waitForTimeout(5000000)
                                                     } catch (error) {
