@@ -37,10 +37,11 @@ export default function (cb) {
                 })
             } catch (error) {
                 try {//`--blink-settings=imagesEnabled=false`
+                    //`--proxy-server=${data.proxyServer}`,
                     browser = await puppeteer.launch({
                         headless: false,
                         defaultViewport: null,
-                        args:['--start-maximized', `--proxy-server=${data.proxyServer}`, ],
+                        args:['--start-maximized',  ],
                     })
                 } catch (error) {
                     console.log(error)
@@ -50,11 +51,12 @@ export default function (cb) {
             try {
             
                 const page = (await browser.pages())[0]
-        
+                /*
                 await page.authenticate({
                     username: data.proxyUser,
                     password: data.proxyPassword,
                 })
+                */
 
                 await page.setUserAgent(randUserAgent.toString())
 
