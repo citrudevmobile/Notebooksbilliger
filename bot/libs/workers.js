@@ -74,6 +74,7 @@ export default function (cb) {
                         await page.waitForSelector('#haccount',{ timeout: 100000 })
                         break;
                     } catch (error) {
+                        console.log(`${workerName} ${error}`)
                         console.log(`${workerName} retry login...`)
                     }
                     x++
@@ -99,7 +100,7 @@ export default function (cb) {
                                 
                                 pubsub.unsubscribe('maintain_session')
                                
-
+                                
                                 try {
                                     execTimer.start()
                                     console.log('maintain_session stopped...')
