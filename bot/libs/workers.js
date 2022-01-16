@@ -101,10 +101,8 @@ export default function (cb) {
                             })
                             
                             pubsub.subscribe(`${data.workerName}_checkout`, async function (result) {
-                                
                                 try {
                                     execTimer.start()
-                                    console.log('maintain_session stopped...')
                                     await page.waitForSelector(`#haccount`)
                                     console.log(`Product found: started add to cart and checkout task...`)
                                     while (true) {
@@ -118,43 +116,50 @@ export default function (cb) {
                                                 page.waitForNavigation('domcontentloaded')
                                             ])
                                             
-                                            console.log('added to cart...')
+                                            console.log('Added product to cart...')
                                            
                                             await page.goto('https://www.notebooksbilliger.de/kasse', { waitUntil: 'domcontentloaded', timeout: 50000 })
                                             
                                             while (true) {
                                                 try {
                                                     await page.waitForXPath("//button[contains(., 'Click to start verification')]", {timeout: 500})
-                                                    console.log('captcha found...')
+                                                    console.log('Captcha found...')
                                                     await page.waitForTimeout(5000000)
-                                                    await page.waitForXPath("//button[contains(., 'Click to start verification')]")
                                                     const [button] = await page.$x("//button[contains(., 'Click to start verification')]");
                                                     if (button) {
                                                         await button.click();
                                                     }
                                                     break;
                                                 } catch (error) {
-                                                    console.log('captcha not found error...')
+                                                    console.log('Captcha not found...')
                                                     try {
                                                         await page.waitForSelector('.section-box-hd.head', {timeout: 500})
-                                                        console.log('Checkout found')
+                                                        console.log('Checkout found...')
+                                                        await page.click('#paycreditcard', {delay: 100})
+                                                        await page.click('#shipupsexpressmoneyorder_55', {delay: 100})
+                                                        await page.$eval('#conditions', check => check.checked = true);
+                                                        await page.click('#paycreditcard', {delay: 100})
+                                                        
+                                                        await page.waitForTimeout(10000)
+                                                        await Promise.all([
+                                                            page.$eval(`form[id="checkoutForm"]`, form => form.submit()),
+                                                            page.waitForNavigation('domcontentloaded')
+                                                        ])
+                                                        console.log('At final page...')
                                                         await page.waitForTimeout(5000000)
                                                     } catch (error) {
-
-                                                        console.log('checkout not found error...')
+                                                        console.log('Checkout not found...')
                                                     }
                                                 }
                                             }
-                                            
-                                            execTimer.stop()
-
                                             await page.waitForTimeout(100000)
-                                           
                                             break
                                         } catch (error) {
                                             console.log(`${data.workerName}: error occured during checkout process trying again...`)
                                         }
                                     }
+                                      
+                                    execTimer.stop()
                                 } catch (error) {
                                     console.log(`${data.workerName}: error occured during checkout process...`)
                                     //discordMessage(`#${data.workerName} failed to checkout product.`, `contact admin for your bot to findout more`, false).send()
