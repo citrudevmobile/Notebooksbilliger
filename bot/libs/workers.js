@@ -130,6 +130,28 @@ export default function (cb) {
                                                         await button.click();
                                                     }
                                                     await page.waitForSelector('.section-box-hd.head', {timeout: 100000})
+                                                    console.log('Checkout ready...')
+
+                                                        const creditCard  = await page.$('#paycreditcard')
+                                                        await creditCard.click()
+
+                                                        const shipping  = await page.$('#shipupsexpresscreditcard_55')
+                                                        await shipping.click()
+
+                                                        await page.$eval('#conditions', check => check.checked = true)
+                                                        
+                                                        await Promise.all([
+                                                            page.$eval(`form[id="checkoutForm"]`, form => form.submit()),
+                                                            page.waitForNavigation('domcontentloaded')
+                                                        ])
+
+                                                        console.log('At final page...')
+                                                        await page.waitForTimeout(5000000)
+
+                                                        await Promise.all([
+                                                            page.$eval(`form[name="checkout_summary_form"]`, form => form.submit()),
+                                                            page.waitForNavigation('domcontentloaded')
+                                                        ])
 
                                                     break;
                                                 } catch (error) {
@@ -146,8 +168,6 @@ export default function (cb) {
 
                                                         await page.$eval('#conditions', check => check.checked = true)
                                                         
-                                                        await page.waitForTimeout(10000)
-
                                                         await Promise.all([
                                                             page.$eval(`form[id="checkoutForm"]`, form => form.submit()),
                                                             page.waitForNavigation('domcontentloaded')
@@ -155,9 +175,16 @@ export default function (cb) {
 
                                                         console.log('At final page...')
                                                         await page.waitForTimeout(5000000)
+
+                                                        await Promise.all([
+                                                            page.$eval(`form[name="checkout_summary_form"]`, form => form.submit()),
+                                                            page.waitForNavigation('domcontentloaded')
+                                                        ])
+                                                        
+                                                        break;
                                                     } catch (error) {
                                                         console.log(error)
-                                                        console.log('Checkout not found...')
+                                                        console.log('Error during checkout')
                                                     }
                                                 }
                                             }
