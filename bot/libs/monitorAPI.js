@@ -10,7 +10,7 @@ export default function (pubsub, cb) {
 
     console.log('bot started...')
 
-    pubsub.subscribe('monitor_api', async (data) => { 
+    pubsub.subscribe('monitor_api', async (data) => {  
 
         console.log('monitor api started...')
         

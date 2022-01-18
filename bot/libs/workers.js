@@ -146,13 +146,15 @@ export default function (cb) {
                                                         ])
 
                                                         await page.waitForSelector(`form[name="checkout_summary_form"]`, { timeout: 100000 })
-                                                        console.log('At final page...')
-                                                        await page.waitForTimeout(5000000)
+                                                        
 
                                                         await Promise.all([
                                                             page.$eval(`form[name="checkout_summary_form"]`, form => form.submit()),
                                                             page.waitForNavigation('domcontentloaded')
                                                         ])
+
+                                                        console.log('At final page...')
+                                                        await page.waitForTimeout(5000000)
 
                                                     break;
                                                 } catch (error) {
@@ -175,13 +177,15 @@ export default function (cb) {
                                                         ])
 
                                                         await page.waitForSelector(`form[name="checkout_summary_form"]`, { timeout: 100000 })
-                                                        console.log('At final page...')
-                                                        await page.waitForTimeout(5000000)
+                                                        
 
                                                         await Promise.all([
                                                             page.$eval(`form[name="checkout_summary_form"]`, form => form.submit()),
                                                             page.waitForNavigation('domcontentloaded')
                                                         ])
+
+                                                        console.log('At final page...')
+                                                        await page.waitForTimeout(5000000)
 
                                                         break;
                                                     } catch (error) {

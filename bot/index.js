@@ -13,7 +13,7 @@ Workers(function(pubsub) {
         if(readyWorkers.length == 0) {
             setTimeout(function (pubsub) {
                 pubsub.publish('monitor_api')
-            }, 50000, pubsub)
+            }, 5000, pubsub)
         }
 
         readyWorkers.push(data.workerName)
