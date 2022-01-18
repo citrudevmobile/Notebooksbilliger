@@ -185,7 +185,6 @@ export default function (cb) {
 
                                                         break;
                                                     } catch (error) {
-                                                        console.log(error)
                                                         console.log('Error during checkout')
                                                     }
                                                 }
