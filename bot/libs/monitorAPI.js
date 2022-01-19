@@ -45,12 +45,12 @@ export default function (pubsub, cb) {
                 console.log(randProxy)
                 response = await axios.get('https://www.mockachino.com/27bcb9bb-1e22-45/users', {
                     proxy: {
-                        protocol:'http',
+                        protocol:'https',
                         host: randProxy.proxy,
                         port: randProxy.port,
                     }    
                 })
-                
+                console.log('Success Request...')
                 products = response.data.listMap.filter(function (product) { return skus.includes(product.fe_sku) && product.is_active == 'true' })
                 
                 while (x < products.length) {
