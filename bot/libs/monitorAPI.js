@@ -43,14 +43,13 @@ export default function (pubsub, cb) {
             try {
     
                 response = await axios.get('https://www.mockachino.com/27bcb9bb-1e22-45/users', {
-                /*    
+                  
                 proxy: {
-                        protocol:'http',
-                        host: 'basic.dreamproxies.io',
-                        port: '31112',
-            
-                      }
-                      */
+                    protocol:'http',
+                    host: rotateProxies.proxy,
+                    port: rotateProxies.port,
+                }
+                      
                 })
                 
                 products = response.data.listMap.filter(function (product) { return skus.includes(product.fe_sku) && product.is_active == 'true' })
