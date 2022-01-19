@@ -1,4 +1,5 @@
 import fs from 'fs'
+import path from 'path'
 
 const freeProxies = [
 
@@ -7,7 +8,7 @@ const freeProxies = [
 let lastRandNumForFreeProxies = 0
 
 
-fs.readFile('proxies.txt', 'utf8', function(err,data) {
+fs.readFile(path.join(__dirname, 'proxies.txt'), 'utf8', function(err,data) {
     if(err) throw err;
     console.log(data)
 })
