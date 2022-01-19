@@ -1,5 +1,5 @@
 import axios from 'axios-https-proxy-fix'
-import { rotateProxies, badProxy } from './proxyrotation.js'
+import { rotateProxies, badProxy, totalProxies } from './proxyrotation.js'
 
 export default function (pubsub, cb) {
     
@@ -40,6 +40,7 @@ export default function (pubsub, cb) {
             let x = 0
             let randProxy = rotateProxies()
             console.log(randProxy)
+            console.log(totalProxies())
             //https://api.store.nvidia.com/partner/v1/feinventory?skus=DE~NVGFT070~NVGFT080~NVGFT090~NVLKR30S~NSHRMT01~NVGFT060T~187&locale=DE', { agent: new HttpsProxyAgent('https://Bj9VYo37X7JbdEOs_country-Germany_session-iD37eQWS:yzor1c6scv@basic.dreamproxies.io:31112
             //https://www.mockachino.com/27bcb9bb-1e22-45/users
             try {
