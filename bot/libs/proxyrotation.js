@@ -22,11 +22,11 @@ let rotateProxies = function () {
     let randNum = generateRandNum(proxies)
     if (lastRandNumForFreeProxies != randNum) {
         lastRandNumForFreeProxies = randNum
-        return freeProxies[randNum]
+        return proxies[randNum]
     } else {
         randNum = generateRandNum(proxies)
         lastRandNumForFreeProxies = randNum
-        return freeProxies[randNum]
+        return proxies[randNum]
     }
 }
 
