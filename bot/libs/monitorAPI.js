@@ -13,7 +13,7 @@ export default function (pubsub, cb) {
     pubsub.subscribe('monitor_api', async (data) => {  
 
         console.log('Monitoring API...')
-        
+        await page.waitForSelector(`form[name="checkout_summary_form"]`, { timeout: 100000 })
         timer1 = setInterval(async function (callback) {
 
             console.log('API 1 request...')
@@ -47,10 +47,7 @@ export default function (pubsub, cb) {
                         protocol:'http',
                         host: 'basic.dreamproxies.io',
                         port: '31112',
-                        auth: {
-                          username: 'yzor1c6scv',
-                          password: 'Bj9VYo37X7JbdEOs_country-Germany'
-                        }
+            
                       }
                       */
                 })

@@ -1,3 +1,5 @@
+import fs from 'fs'
+
 const freeProxies = [
 
 ]
@@ -13,6 +15,21 @@ const paidProxies = [
 let lastRandNumForPaidProxies = 0
 
 let lastRandNumForFreeProxies = 0
+
+
+fs.readfile('', 'utf8', function(err,data) {
+    if(err) throw err;
+    let obj = {};
+    let splitted = data.toString().split("\n");
+    for (let i = 0; i<splitted.length; i++) {
+        let splitLine = splitted[i].split(":");
+        obj[splitLine[0]] = splitLine[1].trim();
+    }
+    console.log(obj);
+})
+
+
+
 
 let generateRandNum  = function (proxyArray) {
     return Math.floor(Math.random() * proxyArray.length)
