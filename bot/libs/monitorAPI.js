@@ -8,11 +8,11 @@ export default function (pubsub, cb) {
     let counter = 0
     
 
-    console.log('bot started...')
+    console.log('Bot started...')
 
     pubsub.subscribe('monitor_api', async (data) => {  
 
-        console.log('monitor api started...')
+        console.log('Monitoring API...')
         
         timer1 = setInterval(async function (callback) {
 
