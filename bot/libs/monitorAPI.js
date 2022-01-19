@@ -1,4 +1,5 @@
 import axios from 'axios-https-proxy-fix'
+import proxies from './proxyrotation.js'
 
 export default function (pubsub, cb) {
     
