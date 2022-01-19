@@ -30,6 +30,10 @@ let rotateProxies = function () {
     }
 }
 
+let badProxy = function (_proxy) {
+    proxies.filter((proxy) => {return proxy.proxy != _proxy.proxy })
+}
 export {
-    rotateProxies
+    rotateProxies,
+    badProxy
 }

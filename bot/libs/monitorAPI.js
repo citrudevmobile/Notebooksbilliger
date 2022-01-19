@@ -1,5 +1,5 @@
 import axios from 'axios-https-proxy-fix'
-import { rotateProxies } from './proxyrotation.js'
+import { rotateProxies, badProxy } from './proxyrotation.js'
 
 export default function (pubsub, cb) {
     
@@ -67,6 +67,7 @@ export default function (pubsub, cb) {
     
             } catch (error) {
                 console.log('Request Failed...')
+                badProxy(randProxy)
             }
     
         }, time, cb)
