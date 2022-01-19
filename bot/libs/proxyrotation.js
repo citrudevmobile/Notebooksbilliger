@@ -13,7 +13,6 @@ fs.readFile(path.join(process.cwd(), '\\libs\\proxies.txt'), 'utf8', function(er
     data.split(/\r?\n/).forEach(line =>  {
         let proxy = line.split('\t')
         let proxyData = {proxy: proxy[0], port: proxy[1]}
-        console.log(proxyData)
         proxies.push(proxyData)
     })
 })
@@ -25,12 +24,12 @@ let generateRandNum  = function (proxyArray) {
 
 
 let rotateProxies = function () {
-    let randNum = generateRandNum(freeProxies)
+    let randNum = generateRandNum(proxies)
     if (lastRandNumForFreeProxies != randNum) {
         lastRandNumForFreeProxies = randNum
         return freeProxies[randNum]
     } else {
-        randNum = generateRandNum(freeProxies)
+        randNum = generateRandNum(proxies)
         lastRandNumForFreeProxies = randNum
         return freeProxies[randNum]
     }
