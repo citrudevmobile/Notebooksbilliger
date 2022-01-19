@@ -68,7 +68,7 @@ export default function (pubsub, cb) {
                 }
     
             } catch (error) {
-                console.log(error)
+                console.log('Request Failed...')
                 pubsub.unsubscribe('maintain_session')
                 clearInterval(timer1)
                 clearInterval(timer2) 
