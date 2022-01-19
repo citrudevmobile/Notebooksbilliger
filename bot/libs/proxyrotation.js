@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 
-const proxies = []
+let proxies = []
 
 let lastRandNumForFreeProxies = 0
 
