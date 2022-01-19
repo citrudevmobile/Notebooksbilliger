@@ -27,36 +27,35 @@ export default function (cb) {
         
         if (!workers.includes(workerName)){
             workers.push(workerName)
-           // `--proxy-server=${data.proxyServer}`,
             try {
                 browser = await puppeteer.launch({
                     headless: false,
                     defaultViewport: null,
                     executablePath: `C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe`,
-                    args:['--start-maximized',],
+                    args:['--start-maximized', `--proxy-server=${data.proxyServer}`, `--blink-settings=imagesEnabled=false`],
+                    
                 })
             } catch (error) {
-                try {//`--blink-settings=imagesEnabled=false`
-                    //`--proxy-server=${data.proxyServer}`,
+                try {
                     browser = await puppeteer.launch({
                         headless: false,
                         defaultViewport: null,
-                        args:['--start-maximized',  ],
+                        args:['--start-maximized', `--proxy-server=${data.proxyServer}`, `--blink-settings=imagesEnabled=false`],
                     })
                 } catch (error) {
-                    console.log(error)
+                    console.log('Puppeteer failed to start...')
                 }
             }
         
             try {
             
                 const page = (await browser.pages())[0]
-                /*
+                
                 await page.authenticate({
                     username: data.proxyUser,
                     password: data.proxyPassword,
                 })
-                */
+                
 
                 await page.setUserAgent(randUserAgent.toString())
 
@@ -79,7 +78,6 @@ export default function (cb) {
                     } catch (error) {
                         console.log(`${workerName} retry login...`)
                         console.log(`${workerName} ${error}`)
-                        
                     }
                     x++
                 }
@@ -197,7 +195,6 @@ export default function (cb) {
                                     execTimer.stop()
                                 } catch (error) {
                                     console.log(`${data.workerName}: error occured during checkout process...`)
-                                    //discordMessage(`#${data.workerName} failed to checkout product.`, `contact admin for your bot to findout more`, false).send()
                                 }
                             })
 
