@@ -8,7 +8,7 @@ const freeProxies = [
 let lastRandNumForFreeProxies = 0
 
 
-fs.readFile(path.join(process.cwd(), 'proxies.txt'), 'utf8', function(err,data) {
+fs.readFile(path.join(process.cwd(), '\\libs\\proxies.txt'), 'utf8', function(err,data) {
     if(err) throw err;
     console.log(data)
 })
