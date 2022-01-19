@@ -77,7 +77,7 @@ export default function (pubsub, cb) {
         /*
         timer2 = setInterval(async function (callback) {
     
-            console.log('API 1 request...')
+            console.log('API 2 request...')
     
             let response = null
             let products = []
@@ -90,9 +90,18 @@ export default function (pubsub, cb) {
             "NVGFT080T_DE"
             ]
             let x = 0
+            let randProxy = rotateProxies()
+            console.log(randProxy)
+            console.log(totalProxies())
     
             try {
-                response = await axios.get('https://api.store.nvidia.com/partner/v1/feinventory?skus=NL~NVGFT070~NVGFT080~NVGFT090~NVLKR30S~NSHRMT01~NVGFT060T~187&locale=NL');
+                response = await axios.get('https://api.store.nvidia.com/partner/v1/feinventory?skus=NL~NVGFT070~NVGFT080~NVGFT090~NVLKR30S~NSHRMT01~NVGFT060T~187&locale=NL', {
+                    proxy: {
+                        protocol:'https',
+                        host: randProxy.proxy,
+                        port: randProxy.port,
+                    }    
+                });
                 
                 products = response.data.listMap.filter(function (product) { return skus.includes(product.fe_sku) && product.is_active == 'false' })
             
@@ -108,10 +117,8 @@ export default function (pubsub, cb) {
                     console.log('timers stopped...')     
                 }
             } catch (error) {
-                pubsub.unsubscribe('maintain_session')
-                clearInterval(timer1)
-                clearInterval(timer2)         
-                console.log('timers stopped...')        
+                console.log('Request Failed...')
+                badProxy(randProxy)     
             }
     
         }, time, cb)
