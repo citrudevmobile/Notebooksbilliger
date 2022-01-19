@@ -44,13 +44,11 @@ export default function (pubsub, cb) {
                 let randProxy = rotateProxies()
                 console.log(randProxy)
                 response = await axios.get('https://www.mockachino.com/27bcb9bb-1e22-45/users', {
-                
-                proxy: {
-                    protocol:'http',
-                    host: randProxy.proxy,
-                    port: randProxy.port,
-                }
-                        
+                    proxy: {
+                        protocol:'http',
+                        host: randProxy.proxy,
+                        port: randProxy.port,
+                    }    
                 })
                 
                 products = response.data.listMap.filter(function (product) { return skus.includes(product.fe_sku) && product.is_active == 'true' })
@@ -69,9 +67,6 @@ export default function (pubsub, cb) {
     
             } catch (error) {
                 console.log('Request Failed...')
-                pubsub.unsubscribe('maintain_session')
-                clearInterval(timer1)
-                clearInterval(timer2) 
             }
     
         }, time, cb)
