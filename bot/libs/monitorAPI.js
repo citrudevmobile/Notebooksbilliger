@@ -68,13 +68,13 @@ export default function (pubsub, cb) {
                 }
     
             } catch (error) {
-                console.log('Request Failed...')
+                console.log('API 1 Request Failed...')
                 badProxy(randProxy)
             }
     
         }, time, cb)
     
-        /*
+        
         timer2 = setInterval(async function (callback) {
     
             console.log('API 2 request...')
@@ -117,14 +117,12 @@ export default function (pubsub, cb) {
                     console.log('timers stopped...')     
                 }
             } catch (error) {
-                console.log('Request Failed...')
+                console.log('API 2 Request Failed...')
                 badProxy(randProxy)     
             }
     
         }, time, cb)
-        */
-
-
+        
     })
 
   
