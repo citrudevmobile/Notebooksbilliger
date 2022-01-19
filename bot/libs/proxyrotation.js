@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 
-const freeProxies = [
+const proxies = [
 
 ]
 
@@ -11,9 +11,10 @@ let lastRandNumForFreeProxies = 0
 fs.readFile(path.join(process.cwd(), '\\libs\\proxies.txt'), 'utf8', function(err,data) {
     if(err) throw err;
     data.split(/\r?\n/).forEach(line =>  {
-        console.log(`Line from file: ${line}`);
-    });
-    
+        let proxy = line.split(' ')
+        let proxyData = {proxy: proxy[0].trim(), port: proxy[1].trim()}
+        proxies.push(proxyData)
+    })
 })
 
 
