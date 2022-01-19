@@ -33,7 +33,12 @@ let rotateProxies = function () {
 let badProxy = function (_proxy) {
     proxies = proxies.filter((proxy) => {return proxy.proxy != _proxy.proxy })
 }
+
+let totalProxies = function () {
+    return proxies.length
+}
 export {
     rotateProxies,
-    badProxy
+    badProxy,
+    totalProxies
 }
