@@ -50,6 +50,10 @@ export default function (pubsub, cb) {
                         protocol:'https',
                         host: randProxy.proxy,
                         port: randProxy.port,
+                        auth: {
+                            username: randProxy.user,
+                            password: randProxy.password
+                          },
                     }    
                 })
                 console.log('Success Request...')
@@ -100,6 +104,10 @@ export default function (pubsub, cb) {
                         protocol:'https',
                         host: randProxy.proxy,
                         port: randProxy.port,
+                        auth: {
+                            username: randProxy.user,
+                            password: randProxy.password
+                          },
                     }    
                 });
                 

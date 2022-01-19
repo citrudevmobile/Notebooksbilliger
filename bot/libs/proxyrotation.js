@@ -8,8 +8,8 @@ let lastRandNumForFreeProxies = 0
 fs.readFile(path.join(process.cwd(), 'proxies.txt'), 'utf8', function (err, data) {
     if (err) throw err;
     data.split(/\r?\n/).forEach(line => {
-        let proxy = line.split('\t')
-        let proxyData = { proxy: proxy[0], port: proxy[1] }
+        let proxy = line.split(':')
+        let proxyData = { proxy: proxy[0], port: proxy[1], user: proxy[2], password: proxy[3] }
         proxies.push(proxyData)
     })
 })
