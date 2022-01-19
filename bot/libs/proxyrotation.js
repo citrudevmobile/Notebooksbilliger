@@ -10,7 +10,10 @@ let lastRandNumForFreeProxies = 0
 
 fs.readFile(path.join(process.cwd(), '\\libs\\proxies.txt'), 'utf8', function(err,data) {
     if(err) throw err;
-    console.log(data)
+    data.split(/\r?\n/).forEach(line =>  {
+        console.log(`Line from file: ${line}`);
+    });
+    
 })
 
 
