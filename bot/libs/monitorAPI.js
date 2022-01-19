@@ -38,11 +38,12 @@ export default function (pubsub, cb) {
             "NVGFT080T_DE"
             ]
             let x = 0
+            let randProxy = rotateProxies()
+            console.log(randProxy)
             //https://api.store.nvidia.com/partner/v1/feinventory?skus=DE~NVGFT070~NVGFT080~NVGFT090~NVLKR30S~NSHRMT01~NVGFT060T~187&locale=DE', { agent: new HttpsProxyAgent('https://Bj9VYo37X7JbdEOs_country-Germany_session-iD37eQWS:yzor1c6scv@basic.dreamproxies.io:31112
             //https://www.mockachino.com/27bcb9bb-1e22-45/users
             try {
-                let randProxy = rotateProxies()
-                console.log(randProxy)
+                
                 response = await axios.get('https://www.mockachino.com/27bcb9bb-1e22-45/users', {
                     proxy: {
                         protocol:'https',
