@@ -73,7 +73,7 @@ export default function (pubsub, cb) {
     
             } catch (error) {
                 console.log('API 1 Request Failed...')
-                badProxy(randProxy)
+               
             }
     
         }, time, cb)
@@ -126,7 +126,7 @@ export default function (pubsub, cb) {
                 }
             } catch (error) {
                 console.log('API 2 Request Failed...')
-                badProxy(randProxy)     
+                 
             }
     
         }, time, cb)
