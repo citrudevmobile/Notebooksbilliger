@@ -5,7 +5,7 @@ let proxies = []
 
 let lastRandNumForFreeProxies = 0
 
-fs.readFile(path.join(process.cwd(), '\\libs\\proxies.txt'), 'utf8', function (err, data) {
+fs.readFile(path.join(process.cwd(), 'proxies.txt'), 'utf8', function (err, data) {
     if (err) throw err;
     data.split(/\r?\n/).forEach(line => {
         let proxy = line.split('\t')
