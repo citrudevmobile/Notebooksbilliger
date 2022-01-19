@@ -46,7 +46,7 @@ export default function (pubsub, cb) {
                 response = await axios.get('https://www.mockachino.com/27bcb9bb-1e22-45/users', {
                 
                 proxy: {
-                    protocol:'http',
+                    protocol:'https',
                     host: randProxy.proxy,
                     port: randProxy.port,
                 }
