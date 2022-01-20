@@ -50,8 +50,8 @@ export default function (pubsub, cb) {
                         host: randProxy.proxy,
                         port: randProxy.port,
                         auth: {
-                            username: randProxy.user,
-                            password: randProxy.password
+                            username: randProxy.user || null,
+                            password: randProxy.password || null
                           },
                     }    
                 })
@@ -104,8 +104,8 @@ export default function (pubsub, cb) {
                         host: randProxy.proxy,
                         port: randProxy.port,
                         auth: {
-                            username: randProxy.user,
-                            password: randProxy.password
+                            username: randProxy.user || null,
+                            password: randProxy.password || null
                           },
                     }    
                 });

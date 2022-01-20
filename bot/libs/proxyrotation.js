@@ -37,6 +37,7 @@ let badProxy = function (_proxy) {
 let totalProxies = function () {
     return proxies.length
 }
+
 export {
     rotateProxies,
     badProxy,
