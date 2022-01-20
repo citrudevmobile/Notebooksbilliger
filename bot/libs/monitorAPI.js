@@ -52,7 +52,12 @@ export default function (pubsub, cb) {
                             username: randProxy.user || null,
                             password: randProxy.password || null
                           },
-                    }    
+                    },
+                    headers: {
+                        'Cache-Control': 'no-cache',
+                        'Pragma': 'no-cache',
+                        'Expires': '0',
+                      },    
                 })
                 
                 products = response.data.listMap.filter(function (product) { return skus.includes(product.fe_sku) && product.is_active == 'true' })
@@ -105,12 +110,17 @@ export default function (pubsub, cb) {
                             username: randProxy.user || null,
                             password: randProxy.password || null
                           },
-                    }    
+                    },
+                    headers: {
+                        'Cache-Control': 'no-cache',
+                        'Pragma': 'no-cache',
+                        'Expires': '0',
+                      },    
                 });
                 
                 products = response.data.listMap.filter(function (product) { return skus.includes(product.fe_sku) && product.is_active == 'false' })
                 console.log('Success Request...')
-                
+
                 while (x < products.length) {
                     callback(products[x])
                     x++
