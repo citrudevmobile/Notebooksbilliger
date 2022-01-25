@@ -87,9 +87,13 @@ export default function (cb) {
                     try {
                         await page.goto(`https://www.notebooksbilliger.de/warenkorb`, {waitUntil: 'networkidle0', timeout: 50000})
                         const allItemsInCart = await page.$$eval("button.js-remove-from-cart", el => el.map(x => x.getAttribute("data-delete-url")));
-                        console.log(workerName)
                         console.log(allItemsInCart)
-                        await page.waitForTimeout(500000)
+                        let x = 0
+                        while (x < allItemsInCart.length) {
+                            await page.goto(allItemsInCart[x], {waitUntil: 'domcontentloaded', timeout: 50000})
+                            x++
+                        }
+                        await page.goto(storeUrl, {waitUntil: 'networkidle0', timeout: 50000})
                     } catch (error) {
                         console.log(error)
                     }
