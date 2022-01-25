@@ -6,7 +6,7 @@ import discordMessage from './libs/discordMessage.js'
 import { consoleLogToFile } from "console-log-to-file";
 
 consoleLogToFile({
-    logFilePath: "./log/default.log.txt",
+    logFilePath: "./log/default.log.txt"
 })
   
 
