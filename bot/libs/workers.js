@@ -82,7 +82,7 @@ export default function (cb) {
                     x++
                 }
 
-                // clear cart...
+                // Clear cart...
                 if ((await page.$('#haccount'))) {
                     try {
                         await page.goto(`https://www.notebooksbilliger.de/warenkorb`, {waitUntil: 'networkidle0', timeout: 50000})
