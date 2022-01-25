@@ -3,6 +3,12 @@ import monitorAPI  from './libs/monitorAPI.js'
 import Workers from './libs/workers.js'
 import Tasks from './tasks.js'
 import discordMessage from './libs/discordMessage.js'
+import { consoleLogToFile } from "console-log-to-file";
+
+consoleLogToFile({
+    logFilePath: "./log/default.log.txt",
+})
+  
 
 let readyWorkers = []
 

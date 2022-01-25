@@ -3,8 +3,12 @@ import puppeteer from 'puppeteer-extra'
 import executionTime from 'execution-time'
 import UserAgent from 'user-agents'
 import StealthPlugin from 'puppeteer-extra-plugin-stealth'
+
 import discordMessage from './discordMessage.js'
 
+consoleLogToFile({
+    logFilePath: "/log/default.log",
+  })
 const randUserAgent = new UserAgent({ deviceCategory: 'desktop' })
 const pubsub = new PubSub();
 const storeUrl = `https://www.notebooksbilliger.de/`
