@@ -16,6 +16,7 @@
   "dependencies": {
     "axios": "^0.24.0",
     "axios-https-proxy-fix": "^0.17.1",
+    "console": "^0.7.2",
     "console-log-to-file": "^1.0.3",
     "discord-webhook-node": "^1.1.8",
     "execution-time": "^1.4.1",

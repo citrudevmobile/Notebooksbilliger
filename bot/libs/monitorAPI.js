@@ -10,15 +10,18 @@ export default function (pubsub, cb) {
     let counter = 0
     
 
-    console.log('Bot started...')
+    logger.log(`${Date.now()}| Bot started...`)
+    console.log(`${Date.now()}| Bot started...`)
 
     pubsub.subscribe('monitor_api', async (data) => {  
 
-        console.log('Monitoring API...')
+        logger.log(`${Date.now()}| Monitoring API...`)
+        console.log(`${Date.now()}| Monitoring API...`)
        
         timer1 = setInterval(async function (callback) {
 
-            console.log('API 1 request...')
+            logger.log(`${Date.now()}| API 1 request...`)
+            console.log(`${Date.now()}| API 1 request...`)
 
             if (counter > 10) {
                 pubsub.publish('maintain_session')
@@ -62,7 +65,6 @@ export default function (pubsub, cb) {
                 })
                 
                 products = response.data.listMap.filter(function (product) { return skus.includes(product.fe_sku) && product.is_active == 'true' })
-                console.log('Success Request...')
 
                 while (x < products.length) {
                     callback(products[x])
@@ -72,12 +74,10 @@ export default function (pubsub, cb) {
                 if (products.length) {
                     pubsub.unsubscribe('maintain_session')
                     clearInterval(timer1)
-                    clearInterval(timer2)         
-                    console.log('timers stopped...')    
+                    clearInterval(timer2)            
                 }
     
             } catch (error) {
-                console.log('API 1 Request Failed...')
                
             }
     
@@ -86,7 +86,8 @@ export default function (pubsub, cb) {
         
         timer2 = setInterval(async function (callback) {
     
-            console.log('API 2 request...')
+            logger.log(`${Date.now()}| API 2 request...`)
+            console.log(`${Date.now()}| API 2 request...`)
     
             let response = null
             let products = []
@@ -120,7 +121,7 @@ export default function (pubsub, cb) {
                 });
                 
                 products = response.data.listMap.filter(function (product) { return skus.includes(product.fe_sku) && product.is_active == 'false' })
-                console.log('Success Request...')
+                
 
                 while (x < products.length) {
                     callback(products[x])
@@ -134,8 +135,8 @@ export default function (pubsub, cb) {
                     console.log('timers stopped...')     
                 }
             } catch (error) {
-                console.log('API 2 Request Failed...')
-                 
+                logger.log(`${Date.now()}| API 2 Request Failed...`)
+                console.log(`${Date.now()}| API 2 Request Failed...`)
             }
     
         }, time, cb)
