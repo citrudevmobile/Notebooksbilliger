@@ -1,5 +1,6 @@
 import axios from 'axios-https-proxy-fix'
 import { rotateProxies, badProxy, totalProxies } from './proxyrotation.js'
+import logger from '../libs/logger.js'
 
 export default function (pubsub, cb) {
     

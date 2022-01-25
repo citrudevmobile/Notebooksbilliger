@@ -3,18 +3,14 @@ import monitorAPI  from './libs/monitorAPI.js'
 import Workers from './libs/workers.js'
 import Tasks from './tasks.js'
 import discordMessage from './libs/discordMessage.js'
-import { consoleLogToFile } from "console-log-to-file";
 
-consoleLogToFile({
-    logFilePath: "./log/default.log.txt"
-})
-  
 
 let readyWorkers = []
 
 Workers(function(pubsub) {
 
     pubsub.subscribe('ready_worker', function (data) {
+        logger.log(`${data.workerName} is ready`)
         console.log(`${data.workerName} is ready`)
         if(readyWorkers.length == 0) {
             setTimeout(function (pubsub) {
@@ -32,7 +28,8 @@ Workers(function(pubsub) {
 
     
     monitorAPI(pubsub, function(found) {
-        console.log(found)
+        logger.log(`product found: ${found}`)
+        console.log(`product found: ${found}`)
         try {
             for(const readyWorker of readyWorkers) {
                
