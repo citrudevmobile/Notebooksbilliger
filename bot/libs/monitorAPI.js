@@ -10,13 +10,13 @@ export default function (pubsub, cb) {
     let counter = 0
     
 
-    logger.log(`${Date.now()}| Bot started...`)
-    console.log(`${Date.now()}| Bot started...`)
+    logger.log(`${Date.now().toUTCString()}| Bot started...`)
+    console.log(`${Date.now().toUTCString()}| Bot started...`)
 
     pubsub.subscribe('monitor_api', async (data) => {  
 
-        logger.log(`${Date.now()}| Monitoring API...`)
-        console.log(`${Date.now()}| Monitoring API...`)
+        logger.log(`${Date.now().toUTCString()}| Monitoring API...`)
+        console.log(`${Date.now().toUTCString()}| Monitoring API...`)
        
         timer1 = setInterval(async function (callback) {
 
