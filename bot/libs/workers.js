@@ -81,7 +81,18 @@ export default function (cb) {
                     }
                     x++
                 }
-                
+
+                // clear cart...
+                if ((await page.$('#haccount'))) {
+                    try {
+                        await page.goto(`https://www.notebooksbilliger.de/warenkorb`, {waitUntil: 'networkidle0', timeout: 50000})
+                        const allItemsInCart = await page.$$eval("button.js-remove-from-cart", el => el.map(x => x.getAttribute("data-delete-url")));
+                        console.log(allItemsInCart)
+                        await page.waitForTimeout(500000)
+                    } catch (error) {
+                        console.log(error)
+                    }
+                }
                
                 if ((await page.$('#haccount'))) {
 
