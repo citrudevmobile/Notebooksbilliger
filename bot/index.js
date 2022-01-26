@@ -2,6 +2,7 @@
 import monitorAPI  from './libs/monitorAPI.js'
 import Workers from './libs/workers.js'
 import Tasks from './tasks.js'
+import logger from './libs/logger'
 import discordMessage from './libs/discordMessage.js'
 
 
