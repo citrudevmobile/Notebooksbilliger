@@ -23,8 +23,8 @@ export default function (cb) {
         let workerName = data.workerName
         let browser = null
         
-        logger.log(`${Date.now()}|${workerName} started`)
-        console.log(`${Date.now()}|${workerName} started`)
+        logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} started`)
+        console.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} started`)
         
         if (!workers.includes(workerName)){
             workers.push(workerName)
@@ -44,8 +44,8 @@ export default function (cb) {
                         args:['--start-maximized', `--proxy-server=${data.proxyServer}`, `--blink-settings=imagesEnabled=false`],
                     })
                 } catch (error) {
-                    logger.log(`${Date.now()}|Puppeteer failed to start...`)
-                    console.log(`${Date.now()}|Puppeteer failed to start...`)
+                    logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|Puppeteer failed to start...`)
+                    console.log(`${new Date(Date.now()).toLocaleString('en-US')}|Puppeteer failed to start...`)
                 }
             }
         
@@ -78,10 +78,10 @@ export default function (cb) {
                         await page.waitForSelector('#haccount',{ timeout: 100000 })
                         break;
                     } catch (error) {
-                        logger.log(`${Date.now()}|${workerName} retry login...`)
-                        logger.log(`${Date.now()}|${workerName} ${error}`)
-                        console.log(`${workerName} retry login...`)
-                        console.log(`${workerName} ${error}`)
+                        logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} retry login...`)
+                        logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} ${error}`)
+                        console.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} retry login...`)
+                        console.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} ${error}`)
                     }
                     x++
                 }
@@ -91,10 +91,10 @@ export default function (cb) {
                     try {
                         await page.goto(`https://www.notebooksbilliger.de/warenkorb`, {waitUntil: 'networkidle0', timeout: 50000})
                         const allItemsInCart = await page.$$eval("button.js-remove-from-cart", el => el.map(x => x.getAttribute("data-delete-url")));
-                        logger.log(`${Date.now()}|${workerName} removing items from cart...`)
-                        logger.log(`${Date.now()}|${allItemsInCart}`)
-                        console.log(`${Date.now()}|${workerName} removing items from cart...`)
-                        console.log(`${Date.now()}|${allItemsInCart}`)
+                        logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} removing items from cart...`)
+                        logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|${allItemsInCart}`)
+                        console.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} removing items from cart...`)
+                        console.log(`${new Date(Date.now()).toLocaleString('en-US')}|${allItemsInCart}`)
                         let x = 0
                         while (x < allItemsInCart.length) {
                             await page.goto(allItemsInCart[x], {waitUntil: 'domcontentloaded', timeout: 50000})
@@ -115,8 +115,8 @@ export default function (cb) {
                             pubsub.subscribe('maintain_session', async function (data) {
                                 try {
                                     await page.goto(storeUrl, {waitUntil: 'networkidle0', timeout: 50000})
-                                    logger.log(`${Date.now()}|${workerName} is maintaining session...`)
-                                    console.log(`${Date.now()}|${workerName} is maintaining session...`)
+                                    logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} is maintaining session...`)
+                                    console.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} is maintaining session...`)
                                 } catch (error) {
 
                                 }
@@ -138,8 +138,8 @@ export default function (cb) {
                                                 page.waitForNavigation('domcontentloaded')
                                             ])
                                             
-                                            logger.log(`${Date.now()}|${workerName} added product to cart...`)
-                                            console.log(`${Date.now()}|${workerName} added product to cart...`)
+                                            logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} added product to cart...`)
+                                            console.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} added product to cart...`)
                                            
                                             await page.goto('https://www.notebooksbilliger.de/kasse', { waitUntil: 'domcontentloaded', timeout: 50000 })
                                             
@@ -154,8 +154,8 @@ export default function (cb) {
                                                         await button.click();
                                                     }
                                                     await page.waitForSelector('.section-box-hd.head', {timeout: 100000})
-                                                    logger.log(`${Date.now()}|${workerName} checkout ready...`)
-                                                    console.log(`${Date.now()}|${workerName} checkout ready...`)
+                                                    logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} checkout ready...`)
+                                                    console.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} checkout ready...`)
 
                                                         const creditCard  = await page.$('#paycreditcard')
                                                         await creditCard.click()
@@ -174,8 +174,8 @@ export default function (cb) {
                                                         
                                                         await page.click(`#checkout_submit`, {delay: 100})
 
-                                                        logger.log(`${Date.now()}|${workerName} at final page...`)
-                                                        console.log(`${Date.now()}|${workerName} at final page...`)
+                                                        logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} at final page...`)
+                                                        console.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} at final page...`)
                                                         await page.waitForTimeout(5000000)
 
                                                     break;
@@ -185,8 +185,8 @@ export default function (cb) {
                                                         await page.waitForSelector('.section-box-hd.head', {timeout: 500})
                                                         console.log('Checkout ready...')
 
-                                                        logger.log(`${Date.now()}|${workerName} checkout ready...`)
-                                                        console.log(`${Date.now()}|${workerName} checkout ready...`)
+                                                        logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} checkout ready...`)
+                                                        console.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} checkout ready...`)
                                                        
                                                         const creditCard  = await page.$('#paycreditcard')
                                                         await creditCard.click()
@@ -206,40 +206,40 @@ export default function (cb) {
 
                                                         await page.click(`#checkout_submit`, {delay: 100})
 
-                                                        logger.log(`${Date.now()}|${workerName} at final page...`)
-                                                        console.log(`${Date.now()}|${workerName} at final page...`)
+                                                        logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} at final page...`)
+                                                        console.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} at final page...`)
                                                         
                                                         await page.waitForTimeout(5000000)
 
                                                         break;
                                                     } catch (error) {
-                                                        logger.log(`${Date.now()}|${workerName} error during checkout...`)
-                                                        console.log(`${Date.now()}|${workerName} error during checkout...`)
+                                                        logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} error during checkout...`)
+                                                        console.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} error during checkout...`)
                                                     }
                                                 }
                                             }
                                             await page.waitForTimeout(100000)
                                             break
                                         } catch (error) {
-                                            logger.log(`${Date.now()}|${workerName} error during checkout...`)
-                                            console.log(`${Date.now()}|${workerName} error during checkout...`)
+                                            logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} error during checkout...`)
+                                            console.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} error during checkout...`)
                                         }
                                     }
                                       
                                     execTimer.stop()
                                 } catch (error) {
-                                    logger.log(`${Date.now()}|${workerName} error during checkout...`)
-                                    console.log(`${Date.now()}|${workerName} error during checkout...`)
+                                    logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} error during checkout...`)
+                                    console.log(`$${new Date(Date.now()).toLocaleString('en-US')}|${workerName} error during checkout...`)
                                 }
                             })
                 } else {
-                    logger.log(`${Date.now()}|${workerName} failed to login. Please check proxy...`)
-                    console.log(`${Date.now()}|${workerName} failed to login. Please check proxy...`)
+                    logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} failed to login. Please check proxy...`)
+                    console.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} failed to login. Please check proxy...`)
                 }
         
             } catch (error) {
-                logger.log(`${Date.now()}|${workerName} ${error}`)
-                console.log(`${Date.now()}|${workerName} ${error}`)
+                logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} ${error}`)
+                console.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} ${error}`)
             }
         }
     })

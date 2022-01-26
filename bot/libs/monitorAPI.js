@@ -20,8 +20,8 @@ export default function (pubsub, cb) {
        
         timer1 = setInterval(async function (callback) {
 
-            logger.log(`${Date.now()}| API 1 request...`)
-            console.log(`${Date.now()}| API 1 request...`)
+            logger.log(`${new Date(Date.now()).toLocaleString('en-US')}| API 1 request...`)
+            console.log(`${new Date(Date.now()).toLocaleString('en-US')}| API 1 request...`)
 
             if (counter > 10) {
                 pubsub.publish('maintain_session')
@@ -86,8 +86,8 @@ export default function (pubsub, cb) {
         
         timer2 = setInterval(async function (callback) {
     
-            logger.log(`${Date.now()}| API 2 request...`)
-            console.log(`${Date.now()}| API 2 request...`)
+            logger.log(`${new Date(Date.now()).toLocaleString('en-US')}| API 2 request...`)
+            console.log(`${new Date(Date.now()).toLocaleString('en-US')}| API 2 request...`)
     
             let response = null
             let products = []
@@ -135,8 +135,8 @@ export default function (pubsub, cb) {
                     console.log('timers stopped...')     
                 }
             } catch (error) {
-                logger.log(`${Date.now()}| API 2 Request Failed...`)
-                console.log(`${Date.now()}| API 2 Request Failed...`)
+                logger.log(`${new Date(Date.now()).toLocaleString('en-US')}| API 2 Request Failed...`)
+                console.log(`${new Date(Date.now()).toLocaleString('en-US')}| API 2 Request Failed...`)
             }
     
         }, time, cb)
