@@ -128,7 +128,6 @@ export default function (cb) {
                                     await page.waitForSelector(`#haccount`)
                                     logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} product found: started add to cart and checkout task...`)
                                     console.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} product found: started add to cart and checkout task...`)
-                                    while (true) {
                                         try {
                                            
                                             await page.goto(result.found.product_url, { waitUntil: 'domcontentloaded', timeout: 50000 })
@@ -147,8 +146,8 @@ export default function (cb) {
                                             while (true) {
                                                 try {
                                                     await page.waitForXPath("//button[contains(., 'Click to start verification')]", {timeout: 500})
-                                                    logger.log(`${Date.now()}|${workerName} captcha found...`)
-                                                    console.log(`${Date.now()}|${workerName} captcha found...`)
+                                                    logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} captcha found...`)
+                                                    console.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} captcha found...`)
                                                     await page.waitForTimeout(5000000)
                                                     const [button] = await page.$x("//button[contains(., 'Click to start verification')]");
                                                     if (button) {
@@ -219,13 +218,12 @@ export default function (cb) {
                                                     }
                                                 }
                                             }
-                                            await page.waitForTimeout(100000)
-                                            break
+                            
                                         } catch (error) {
                                             logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} error during checkout...`)
                                             console.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} error during checkout...`)
                                         }
-                                    }
+                                    
                                       
                                     execTimer.stop()
                                 } catch (error) {
