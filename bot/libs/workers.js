@@ -91,9 +91,9 @@ export default function (cb) {
                     try {
                         await page.goto(`https://www.notebooksbilliger.de/warenkorb`, {waitUntil: 'networkidle0', timeout: 50000})
                         const allItemsInCart = await page.$$eval("button.js-remove-from-cart", el => el.map(x => x.getAttribute("data-delete-url")));
-                        logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} removing items from cart...`)
+                        logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} removing ${allItemsInCart.length} items from cart...`)
                         logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|${allItemsInCart}`)
-                        console.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} removing items from cart...`)
+                        console.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} removing ${allItemsInCart.length} items from cart...`)
                         console.log(`${new Date(Date.now()).toLocaleString('en-US')}|${allItemsInCart}`)
                         let x = 0
                         while (x < allItemsInCart.length) {
