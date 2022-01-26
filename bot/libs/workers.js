@@ -126,7 +126,8 @@ export default function (cb) {
                                 try {
                                     execTimer.start()
                                     await page.waitForSelector(`#haccount`)
-                                    console.log(`Product found: started add to cart and checkout task...`)
+                                    logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} product found: started add to cart and checkout task...`)
+                                    console.log(`${new Date(Date.now()).toLocaleString('en-US')}|${workerName} product found: started add to cart and checkout task...`)
                                     while (true) {
                                         try {
                                            

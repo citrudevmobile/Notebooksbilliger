@@ -10,18 +10,18 @@ export default function (pubsub, cb) {
     let counter = 0
     
 
-    logger.log(`${new Date(Date.now()).toLocaleString('en-US')}| Bot started...`)
-    console.log(`${new Date(Date.now()).toLocaleString('en-US')}| Bot started...`)
+    logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|Bot started...`)
+    console.log(`${new Date(Date.now()).toLocaleString('en-US')}|Bot started...`)
 
     pubsub.subscribe('monitor_api', async (data) => {  
 
-        logger.log(`${new Date(Date.now()).toLocaleString('en-US')}| Monitoring API...`)
-        console.log(`${new Date(Date.now()).toLocaleString('en-US')}| Monitoring API...`)
+        logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|Monitoring API...`)
+        console.log(`${new Date(Date.now()).toLocaleString('en-US')}|Monitoring API...`)
        
         timer1 = setInterval(async function (callback) {
 
-            logger.log(`${new Date(Date.now()).toLocaleString('en-US')}| API 1 request...`)
-            console.log(`${new Date(Date.now()).toLocaleString('en-US')}| API 1 request...`)
+            logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|API 1 request...`)
+            console.log(`${new Date(Date.now()).toLocaleString('en-US')}|API 1 request...`)
 
             if (counter > 10) {
                 pubsub.publish('maintain_session')
@@ -78,7 +78,8 @@ export default function (pubsub, cb) {
                 }
     
             } catch (error) {
-               
+                logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|API 1 Request Failed...`)
+                console.log(`${new Date(Date.now()).toLocaleString('en-US')}|API 1 Request Failed...`)
             }
     
         }, time, cb)
@@ -86,8 +87,8 @@ export default function (pubsub, cb) {
         
         timer2 = setInterval(async function (callback) {
     
-            logger.log(`${new Date(Date.now()).toLocaleString('en-US')}| API 2 request...`)
-            console.log(`${new Date(Date.now()).toLocaleString('en-US')}| API 2 request...`)
+            logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|API 2 request...`)
+            console.log(`${new Date(Date.now()).toLocaleString('en-US')}|API 2 request...`)
     
             let response = null
             let products = []
@@ -135,8 +136,8 @@ export default function (pubsub, cb) {
                     console.log('timers stopped...')     
                 }
             } catch (error) {
-                logger.log(`${new Date(Date.now()).toLocaleString('en-US')}| API 2 Request Failed...`)
-                console.log(`${new Date(Date.now()).toLocaleString('en-US')}| API 2 Request Failed...`)
+                logger.log(`${new Date(Date.now()).toLocaleString('en-US')}|API 2 Request Failed...`)
+                console.log(`${new Date(Date.now()).toLocaleString('en-US')}|API 2 Request Failed...`)
             }
     
         }, time, cb)
