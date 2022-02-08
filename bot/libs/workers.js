@@ -160,7 +160,7 @@ export default function (cb) {
                                                         const creditCard  = await page.$('#paycreditcard')
                                                         await creditCard.click()
 
-                                                        const shipping  = await page.$('#shipupsexpresscreditcard_55')
+                                                        const shipping  = await page.$('#shiphermescreditcard_55')
                                                         await shipping.click()
 
                                                         await page.$eval('#conditions', check => check.checked = true)
